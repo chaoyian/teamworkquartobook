@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; 03 相关性分析与投资组合构建 – Quarto Book</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../body/蒙特卡洛模拟在高维数据中的困境.html" rel="next">
+<link href="../body/beta_estimation.html" rel="prev">
+<link href="../images/book-logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e5c0da90bde570b7566f6217e7c63da7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-129de04a1840c7037371eca611205fe6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_download.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/portfolio_analysis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">03 相关性分析与投资组合构建</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">小组报告</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/lianxhcn/quarto_book" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Home</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Topic1 作业解释</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/data_download.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">01 数据下载与预处理</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/beta_estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">02 Beta系数估计</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/portfolio_analysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">03 相关性分析与投资组合构建</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>附录</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../body/蒙特卡洛模拟在高维数据中的困境.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">探讨蒙特卡罗模拟在高维数据中的困境</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#目的与说明" id="toc-目的与说明" class="nav-link active" data-scroll-target="#目的与说明"><span class="header-section-number">4.1</span> 3.1 目的与说明</a></li>
+  <li><a href="#相关性分析" id="toc-相关性分析" class="nav-link" data-scroll-target="#相关性分析"><span class="header-section-number">4.2</span> 3.3 相关性分析</a></li>
+  <li><a href="#滚动相关系数" id="toc-滚动相关系数" class="nav-link" data-scroll-target="#滚动相关系数"><span class="header-section-number">4.3</span> 3.4 滚动相关系数</a></li>
+  <li><a href="#等权重投资组合分析" id="toc-等权重投资组合分析" class="nav-link" data-scroll-target="#等权重投资组合分析"><span class="header-section-number">4.4</span> 3.5 等权重投资组合分析</a></li>
+  <li><a href="#有效前沿分析" id="toc-有效前沿分析" class="nav-link" data-scroll-target="#有效前沿分析"><span class="header-section-number">4.5</span> 3.6 有效前沿分析</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_download.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/portfolio_analysis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">03 相关性分析与投资组合构建</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">03 相关性分析与投资组合构建</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="目的与说明" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="目的与说明"><span class="header-section-number">4.1</span> 3.1 目的与说明</h2>
+<p>本notebook完成以下任务：</p>
+<ol type="1">
+<li><strong>相关性分析</strong>：
+<ul>
+<li>计算5只股票日收益率的相关系数矩阵</li>
+<li>使用热力图可视化相关系数</li>
+<li>计算滚动相关系数（60天窗口）</li>
+</ul></li>
+<li><strong>等权重投资组合分析</strong>：
+<ul>
+<li>构建5只股票的等权重(1/N)组合</li>
+<li>计算组合绩效指标（年化收益率、波动率、最大回撤、夏普比率）</li>
+<li>估计组合Beta系数，验证可加性</li>
+<li>绘制组合净值曲线</li>
+</ul></li>
+<li><strong>有效前沿分析（选做）</strong>：
+<ul>
+<li>使用均值-方差框架进行投资组合优化</li>
+<li>蒙特卡洛模拟生成随机权重组合</li>
+<li>标注最小方差组合、最大夏普比率组合</li>
+<li>绘制有效前沿曲线</li>
+</ul></li>
+</ol>
+<div id="cell-1" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 导入必要的库</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Arial Unicode MS'</span>]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'seaborn-v0_8-whitegrid'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置路径（使用相对路径）</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>DATA_CLEAN <span class="op">=</span> os.path.join(<span class="st">'data_clean'</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>OUTPUT_Q2 <span class="op">=</span> os.path.join(<span class="st">'output'</span>, <span class="st">'Q2_beta'</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>OUTPUT_Q5 <span class="op">=</span> os.path.join(<span class="st">'output'</span>, <span class="st">'Q5_correlation'</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>OUTPUT_Q6 <span class="op">=</span> os.path.join(<span class="st">'output'</span>, <span class="st">'Q6_portfolio'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>OUTPUT_Q7 <span class="op">=</span> os.path.join(<span class="st">'output'</span>, <span class="st">'Q7_efficient_frontier'</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dir_path <span class="kw">in</span> [OUTPUT_Q5, OUTPUT_Q6, OUTPUT_Q7]:</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    os.makedirs(dir_path, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 无风险利率</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>RF_DAILY <span class="op">=</span> <span class="fl">0.025</span> <span class="op">/</span> <span class="dv">252</span>  <span class="co"># 日频</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>RF_ANNUAL <span class="op">=</span> <span class="fl">0.025</span>       <span class="co"># 年化</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'库导入成功！'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>库导入成功！</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码导入投资组合分析所需的全部库，包括pandas/numpy数据处理、matplotlib/seaborn可视化、statsmodels统计建模以及scipy.optimize优化求解器。无风险利率设置为年化2.5%用于计算夏普比率。</p>
+<div id="cell-3" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 加载收益率数据</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>returns <span class="op">=</span> pd.read_csv(os.path.join(DATA_CLEAN, <span class="st">'returns.csv'</span>), index_col<span class="op">=</span><span class="dv">0</span>, parse_dates<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> pd.read_csv(os.path.join(DATA_CLEAN, <span class="st">'prices.csv'</span>), index_col<span class="op">=</span><span class="dv">0</span>, parse_dates<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 加载全样本Beta结果</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>full_sample_beta <span class="op">=</span> pd.read_csv(os.path.join(OUTPUT_Q2, <span class="st">'full_sample_beta.csv'</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 股票名称列表</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>stock_names <span class="op">=</span> [<span class="st">'ICBC'</span>, <span class="st">'YILI'</span>, <span class="st">'ZTE'</span>, <span class="st">'YUNNAN'</span>, <span class="st">'SINOPEC'</span>]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'数据加载成功！'</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'数据范围: </span><span class="sc">{</span>returns<span class="sc">.</span>index<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss"> 至 </span><span class="sc">{</span>returns<span class="sc">.</span>index<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>数据加载成功！
+数据范围: 2019-01-03 00:00:00 至 2026-03-25 00:00:00</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码加载清洗后的收益率数据和全样本Beta估计结果。数据时间范围2019-01-03至2026-03-25，共1739个观测值。</p>
+</section>
+<section id="相关性分析" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="相关性分析"><span class="header-section-number">4.2</span> 3.3 相关性分析</h2>
+<div id="cell-6" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算相关系数矩阵</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>stock_returns <span class="op">=</span> returns[stock_names]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>corr_matrix <span class="op">=</span> stock_returns.corr()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'日收益率相关系数矩阵'</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(corr_matrix.<span class="bu">round</span>(<span class="dv">4</span>).to_string())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================
+日收益率相关系数矩阵
+================================================================================
+           ICBC    YILI     ZTE  YUNNAN  SINOPEC
+ICBC     1.0000  0.2241  0.0662  0.1621   0.4697
+YILI     0.2241  1.0000  0.2832  0.4642   0.1518
+ZTE      0.0662  0.2832  1.0000  0.2713   0.1455
+YUNNAN   0.1621  0.4642  0.2713  1.0000   0.1695
+SINOPEC  0.4697  0.1518  0.1455  0.1695   1.0000</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码计算5只股票日收益率的相关系数矩阵，反映各股票之间的线性相关程度。相关系数范围从-1到1，数值越高表示走势越同步，可用于评估分散化投资效果。</p>
+<div id="cell-8" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'font.sans-serif'</span>] <span class="op">=</span> [<span class="st">'Arial Unicode MS'</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">'axes.unicode_minus'</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制相关系数热力图</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 股票中文名称映射</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>stock_labels <span class="op">=</span> {</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ICBC'</span>: <span class="st">'工商银行</span><span class="ch">\n</span><span class="st">(ICBC)'</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'YILI'</span>: <span class="st">'伊利股份</span><span class="ch">\n</span><span class="st">(YILI)'</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ZTE'</span>: <span class="st">'中兴通讯</span><span class="ch">\n</span><span class="st">(ZTE)'</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'YUNNAN'</span>: <span class="st">'云南白药</span><span class="ch">\n</span><span class="st">(YUNNAN)'</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SINOPEC'</span>: <span class="st">'中国石化</span><span class="ch">\n</span><span class="st">(SINOPEC)'</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 重命名行列以便显示</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>corr_display <span class="op">=</span> corr_matrix.copy()</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>corr_display.index <span class="op">=</span> [stock_labels[s] <span class="cf">for</span> s <span class="kw">in</span> corr_display.index]</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>corr_display.columns <span class="op">=</span> [stock_labels[s] <span class="cf">for</span> s <span class="kw">in</span> corr_display.columns]</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制热力图</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr_display, annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'RdYlBu_r'</span>, center<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>            vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>, square<span class="op">=</span><span class="va">True</span>, linewidths<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>            fmt<span class="op">=</span><span class="st">'.3f'</span>, annot_kws<span class="op">=</span>{<span class="st">'size'</span>: <span class="dv">11</span>})</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'5只股票日收益率相关系数矩阵'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>plt.savefig(os.path.join(OUTPUT_Q5, <span class="st">'correlation_heatmap.png'</span>), dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'相关系数热力图已保存至 output/Q5_correlation/correlation_heatmap.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_analysis_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>相关系数热力图已保存至 output/Q5_correlation/correlation_heatmap.png</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码生成相关系数矩阵热力图，使用红黄蓝色阶表示相关性高低，对角线为1（自身完全相关）。便于直观比较股票间的相关性结构，识别高相关股票对和低相关股票对。</p>
+<div id="cell-10" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存相关系数矩阵</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>corr_matrix.to_csv(os.path.join(OUTPUT_Q5, <span class="st">'correlation_matrix.csv'</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'相关系数矩阵已保存至 output/Q5_correlation/correlation_matrix.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>相关系数矩阵已保存至 output/Q5_correlation/correlation_matrix.csv</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码保存相关系数矩阵至CSV文件，用于后续分析和报告。</p>
+</section>
+<section id="滚动相关系数" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="滚动相关系数"><span class="header-section-number">4.3</span> 3.4 滚动相关系数</h2>
+<div id="cell-13" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.dates <span class="im">as</span> mdates</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算5只股票两两之间的滚动相关系数（窗口60天）</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>stock_returns_data <span class="op">=</span> returns[stock_names]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成所有10对股票组合 C(5,2)=10</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>pairs <span class="op">=</span> <span class="bu">list</span>(combinations(stock_names, <span class="dv">2</span>))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>pair_abbrs <span class="op">=</span> [<span class="ss">f"</span><span class="sc">{</span>a[:<span class="dv">2</span>]<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>b[:<span class="dv">2</span>]<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> a, b <span class="kw">in</span> pairs]</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'股票对数量: </span><span class="sc">{</span><span class="bu">len</span>(pairs)<span class="sc">}</span><span class="ss"> 对'</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'股票对列表: </span><span class="sc">{</span>pair_abbrs<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算滚动相关系数</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>roll_corr <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>stock_returns_data.index)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (s1, s2), abbr <span class="kw">in</span> <span class="bu">zip</span>(pairs, pair_abbrs):</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    roll_corr[abbr] <span class="op">=</span> stock_returns_data[s1].rolling(<span class="dv">60</span>).corr(stock_returns_data[s2])</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 丢弃NaN值</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>roll_corr <span class="op">=</span> roll_corr.dropna()</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">滚动相关系数计算完成！'</span>)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'数据范围: </span><span class="sc">{</span>roll_corr<span class="sc">.</span>index<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss"> 至 </span><span class="sc">{</span>roll_corr<span class="sc">.</span>index<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'数据点数: </span><span class="sc">{</span><span class="bu">len</span>(roll_corr)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算各对的统计特征</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>pair_stats <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Mean'</span>: roll_corr.mean(),</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Std'</span>: roll_corr.std(),</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Min'</span>: roll_corr.<span class="bu">min</span>(),</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Max'</span>: roll_corr.<span class="bu">max</span>()</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">滚动相关系数统计特征:'</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pair_stats.<span class="bu">round</span>(<span class="dv">4</span>).to_string())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>股票对数量: 10 对
+股票对列表: ['IC-YI', 'IC-ZT', 'IC-YU', 'IC-SI', 'YI-ZT', 'YI-YU', 'YI-SI', 'ZT-YU', 'ZT-SI', 'YU-SI']
+
+滚动相关系数计算完成！
+数据范围: 2019-04-04 00:00:00 至 2026-03-25 00:00:00
+数据点数: 1680
+
+滚动相关系数统计特征:
+         Mean     Std     Min     Max
+IC-YI  0.2090  0.1908 -0.3856  0.7506
+IC-ZT  0.0394  0.2261 -0.4552  0.6170
+IC-YU  0.1592  0.1757 -0.2463  0.6861
+IC-SI  0.4756  0.1648  0.0221  0.8193
+YI-ZT  0.2759  0.1801 -0.1470  0.6499
+YI-YU  0.4373  0.1648 -0.0107  0.8023
+YI-SI  0.1859  0.1955 -0.3555  0.6988
+ZT-YU  0.2869  0.1641 -0.2324  0.6948
+ZT-SI  0.1651  0.2009 -0.3606  0.6675
+YU-SI  0.2143  0.1910 -0.2411  0.7233</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 滚动相关系数计算完成，使用60天滚动窗口计算5只股票两两之间的相关系数。共生成10对股票组合（C(5,2)=10），数据范围从2019-04-04至2026-03-25。统计特征表显示各对的均值、标准差、最小值和最大值。</p>
+<div id="cell-15" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5×2网格绘制10条滚动相关曲线</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pair_colors <span class="op">=</span> plt.cm.tab10(np.linspace(<span class="dv">0</span>, <span class="fl">0.9</span>, <span class="bu">len</span>(pairs)))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">5</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">16</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>ax_flat <span class="op">=</span> axes.flatten()</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (abbr, color) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(roll_corr.columns, pair_colors)):</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> ax_flat[i]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    ser <span class="op">=</span> roll_corr[abbr].dropna()</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    avg <span class="op">=</span> ser.mean()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    ax.plot(ser.index, ser, linewidth<span class="op">=</span><span class="fl">0.9</span>, color<span class="op">=</span>color, alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(ser.index, ser, avg,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>                    where<span class="op">=</span>(ser <span class="op">&gt;</span> avg), color<span class="op">=</span>color, alpha<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    ax.axhline(avg, color<span class="op">=</span>color, linewidth<span class="op">=</span><span class="fl">1.2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>               label<span class="op">=</span><span class="ss">f'均值=</span><span class="sc">{</span>avg<span class="sc">:.3f}</span><span class="ss">'</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    ax.axhline(<span class="fl">0.0</span>, color<span class="op">=</span><span class="st">'gray'</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>, linestyle<span class="op">=</span><span class="st">':'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 标注极端相关（市场危机期）</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    idx_max <span class="op">=</span> ser.idxmax()</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    ax.scatter(idx_max, ser.<span class="bu">max</span>(), color<span class="op">=</span><span class="st">'red'</span>, s<span class="op">=</span><span class="dv">25</span>, zorder<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    ax.annotate(<span class="ss">f'</span><span class="sc">{</span>ser<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss">'</span>, xy<span class="op">=</span>(idx_max, ser.<span class="bu">max</span>()),</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>                xytext<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">6</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>                fontsize<span class="op">=</span><span class="fl">7.5</span>, color<span class="op">=</span><span class="st">'red'</span>, ha<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    ax.set_title(abbr, fontsize<span class="op">=</span><span class="dv">10</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'相关系数'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.05</span>)</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>, loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_formatter(mdates.DateFormatter(<span class="st">'%Y'</span>))</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_locator(mdates.YearLocator())</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelsize<span class="op">=</span><span class="dv">8</span>, rotation<span class="op">=</span><span class="dv">30</span>)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'5只股票两两滚动相关系数（60日窗口）'</span>,</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>fig.savefig(os.path.join(OUTPUT_Q5, <span class="st">'rolling_correlation.png'</span>), dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'滚动相关图已保存至 output/Q5_correlation/rolling_correlation.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_analysis_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>滚动相关图已保存至 output/Q5_correlation/rolling_correlation.png</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 5×2网格图展示了10对股票组合的60日滚动相关系数时序图。每幅子图包含：各色滚动相关系数曲线、阴影填充（高于均值部分）、虚线均值标注、红色点标注最大值位置。不同颜色区分各股票对，可直观对比各对相关性的时变特征和波动程度。</p>
+<div id="cell-17" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存滚动相关系数数据</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>roll_corr.to_csv(os.path.join(OUTPUT_Q5, <span class="st">'rolling_correlation.csv'</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>pair_stats.<span class="bu">round</span>(<span class="dv">4</span>).to_csv(os.path.join(OUTPUT_Q5, <span class="st">'rolling_correlation_stats.csv'</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'滚动相关系数数据已保存至 output/Q5_correlation/'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  - rolling_correlation.csv: 10对股票滚动相关系数时序'</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  - rolling_correlation_stats.csv: 统计特征'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>滚动相关系数数据已保存至 output/Q5_correlation/
+  - rolling_correlation.csv: 10对股票滚动相关系数时序
+  - rolling_correlation_stats.csv: 统计特征</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码保存滚动相关系数数据至CSV文件。60日滚动窗口生成的相关系数时序，可用于分析股票对相关性的动态演变规律。</p>
+</section>
+<section id="等权重投资组合分析" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="等权重投资组合分析"><span class="header-section-number">4.4</span> 3.5 等权重投资组合分析</h2>
+<div id="cell-20" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 构造等权重投资组合</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>n_stocks <span class="op">=</span> <span class="bu">len</span>(stock_names)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> np.ones(n_stocks) <span class="op">/</span> n_stocks  <span class="co"># 每只股票权重相等</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'等权重投资组合: </span><span class="sc">{</span>n_stocks<span class="sc">}</span><span class="ss">只股票，每只权重 = </span><span class="sc">{</span>weights[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算组合日收益率</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>portfolio_returns <span class="op">=</span> returns[stock_names].dot(weights)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义绩效指标计算函数</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_performance_metrics(returns_series, rf_daily<span class="op">=</span>RF_DAILY, annualization_factor<span class="op">=</span><span class="dv">252</span>):</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""计算投资组合绩效指标"""</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    returns_series <span class="op">=</span> returns_series.dropna()</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 基本统计</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    mean_return <span class="op">=</span> returns_series.mean()</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    std_return <span class="op">=</span> returns_series.std()</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 年化收益率和波动率</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    ann_return <span class="op">=</span> mean_return <span class="op">*</span> annualization_factor</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    ann_volatility <span class="op">=</span> std_return <span class="op">*</span> np.sqrt(annualization_factor)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 最大回撤计算</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    cumulative <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> returns_series).cumprod()</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    running_max <span class="op">=</span> cumulative.cummax()</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    drawdown <span class="op">=</span> (cumulative <span class="op">-</span> running_max) <span class="op">/</span> running_max</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    max_drawdown <span class="op">=</span> drawdown.<span class="bu">min</span>()</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 夏普比率（无风险利率年化2.5%）</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    sharpe_ratio <span class="op">=</span> (ann_return <span class="op">-</span> <span class="fl">0.025</span>) <span class="op">/</span> ann_volatility</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Ann. Return'</span>: ann_return,</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Ann. Volatility'</span>: ann_volatility,</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Max Drawdown'</span>: max_drawdown,</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Sharpe Ratio'</span>: sharpe_ratio,</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">'N_obs'</span>: <span class="bu">len</span>(returns_series)</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算组合绩效</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>portfolio_metrics <span class="op">=</span> calculate_performance_metrics(portfolio_returns)</span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'等权重投资组合绩效指标'</span>)</span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'年化收益率:    </span><span class="sc">{</span>portfolio_metrics[<span class="st">"Ann. Return"</span>]<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%'</span>)</span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'年化波动率:    </span><span class="sc">{</span>portfolio_metrics[<span class="st">"Ann. Volatility"</span>]<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%'</span>)</span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'最大回撤:      </span><span class="sc">{</span>portfolio_metrics[<span class="st">"Max Drawdown"</span>]<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%'</span>)</span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'夏普比率:      </span><span class="sc">{</span>portfolio_metrics[<span class="st">"Sharpe Ratio"</span>]<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>等权重投资组合: 5只股票，每只权重 = 0.2000
+
+================================================================================
+等权重投资组合绩效指标
+================================================================================
+年化收益率:    5.98%
+年化波动率:    14.84%
+最大回撤:      -26.82%
+夏普比率:      0.2345</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码构造等权重（1/N）投资组合，每只股票权重为20%。定义了calculate_performance_metrics函数计算组合绩效指标，包括年化收益率、年化波动率、最大回撤和夏普比率。</p>
+<div id="cell-22" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算各股票单独投资的绩效（用于对比）</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>individual_metrics <span class="op">=</span> {}</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> stock <span class="kw">in</span> stock_names:</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> calculate_performance_metrics(returns[stock])</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    individual_metrics[stock] <span class="op">=</span> metrics</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>individual_df <span class="op">=</span> pd.DataFrame(individual_metrics).T</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 组合与个股对比</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>comparison <span class="op">=</span> individual_df.copy()</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>comparison.loc[<span class="st">'Portfolio'</span>] <span class="op">=</span> <span class="bu">list</span>(portfolio_metrics.values())</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'投资组合与单只股票绩效对比'</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(comparison.<span class="bu">round</span>(<span class="dv">4</span>).to_string())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+================================================================================
+投资组合与单只股票绩效对比
+================================================================================
+           Ann. Return  Ann. Volatility  Max Drawdown  Sharpe Ratio   N_obs
+ICBC            0.0643           0.1035       -0.1499        0.3799  1739.0
+YILI            0.0529           0.2398       -0.5133        0.1165  1739.0
+ZTE             0.0886           0.4094       -0.6784        0.1552  1739.0
+YUNNAN          0.0446           0.2474       -0.5505        0.0791  1739.0
+SINOPEC         0.0487           0.1260       -0.1938        0.1877  1739.0
+Portfolio       0.0598           0.1484       -0.2682        0.2345  1739.0</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码计算各股票单独投资的绩效指标并与等权重组合对比。对比结果显示组合波动率和最大回撤显著低于大多数个股，体现分散化降低风险的核心作用。</p>
+<div id="cell-24" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算等权重组合的Beta系数</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># CAPM回归: r_portfolio - rf = alpha + beta * (r_market - rf)</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>excess_portfolio <span class="op">=</span> portfolio_returns <span class="op">-</span> RF_DAILY</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>excess_market <span class="op">=</span> returns[<span class="st">'CSI300'</span>] <span class="op">-</span> RF_DAILY</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(excess_market)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> excess_portfolio</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>portfolio_capm <span class="op">=</span> sm.OLS(y, X).fit()</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>portfolio_beta <span class="op">=</span> portfolio_capm.params[<span class="st">'CSI300'</span>]</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>portfolio_alpha <span class="op">=</span> portfolio_capm.params[<span class="st">'const'</span>]</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>portfolio_r2 <span class="op">=</span> portfolio_capm.rsquared</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'等权重组合CAPM回归结果'</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Alpha:  </span><span class="sc">{</span>portfolio_alpha<span class="sc">:.6f}</span><span class="ss"> (p-value: </span><span class="sc">{</span>portfolio_capm<span class="sc">.</span>pvalues[<span class="st">"const"</span>]<span class="sc">:.4f}</span><span class="ss">)'</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Beta:   </span><span class="sc">{</span>portfolio_beta<span class="sc">:.4f}</span><span class="ss"> (p-value: </span><span class="sc">{</span>portfolio_capm<span class="sc">.</span>pvalues[<span class="st">"CSI300"</span>]<span class="sc">:.4f}</span><span class="ss">)'</span>)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'R²:     </span><span class="sc">{</span>portfolio_r2<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+================================================================================
+等权重组合CAPM回归结果
+================================================================================
+Alpha:  0.000039 (p-value: 0.7751)
+Beta:   0.6210 (p-value: 0.0000)
+R²:     0.6318</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码对等权重组合进行CAPM回归，计算组合的系统性风险Beta系数。回归结果显示组合Beta=0.6210（低于市场均值1），R²=0.63说明市场因子解释了63%的组合收益变动。</p>
+<div id="cell-26" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 验证Beta的可加性</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 组合Beta应该等于各股票Beta的加权平均</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>betas_from_regression <span class="op">=</span> full_sample_beta.set_index(<span class="st">'Stock'</span>)[<span class="st">'Beta'</span>].to_dict()</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>average_beta <span class="op">=</span> np.mean([betas_from_regression[s] <span class="cf">for</span> s <span class="kw">in</span> stock_names])</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span> <span class="op">+</span> <span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'组合Beta可加性验证'</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">各股票Beta系数:'</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> stock <span class="kw">in</span> stock_names:</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  </span><span class="sc">{</span>stock<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>betas_from_regression[stock]<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">股票Beta均值:      </span><span class="sc">{</span>average_beta<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'组合Beta(回归):   </span><span class="sc">{</span>portfolio_beta<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'差异:             </span><span class="sc">{</span><span class="bu">abs</span>(average_beta <span class="op">-</span> portfolio_beta)<span class="sc">:.6f}</span><span class="ss">'</span>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">结论: 组合Beta ≈ 各股票Beta的均值，验证了Beta的可加性原理'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+================================================================================
+组合Beta可加性验证
+================================================================================
+
+各股票Beta系数:
+  ICBC: 0.1807
+  YILI: 0.7853
+  ZTE: 1.2047
+  YUNNAN: 0.7112
+  SINOPEC: 0.2231
+
+股票Beta均值:      0.6210
+组合Beta(回归):   0.6210
+差异:             0.000000
+
+结论: 组合Beta ≈ 各股票Beta的均值，验证了Beta的可加性原理</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码验证CAPM的Beta可加性原理：组合Beta应该等于各股票Beta的加权平均（等权重时即为均值）。计算结果显示组合Beta完美等于各股票Beta均值，验证了Beta的可加性。</p>
+<div id="cell-28" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制组合净值曲线 + 回撤曲线（对齐 task6 专业风格）</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 净值 = (1 + 收益率)的累积乘积</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>portfolio_nav <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> portfolio_returns).cumprod()</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>csi300_nav <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> returns[<span class="st">'CSI300'</span>]).cumprod()</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算回撤</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _drawdown(nav: pd.Series):</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    peak <span class="op">=</span> nav.cummax()</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (nav <span class="op">-</span> peak) <span class="op">/</span> peak</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>port_dd <span class="op">=</span> _drawdown(portfolio_nav)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>csi300_dd <span class="op">=</span> _drawdown(csi300_nav)</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>max_dd_p <span class="op">=</span> port_dd.<span class="bu">min</span>()</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>max_dd_m <span class="op">=</span> csi300_dd.<span class="bu">min</span>()</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算指标用于图例显示</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>ann_ret_p <span class="op">=</span> portfolio_returns.mean() <span class="op">*</span> <span class="dv">252</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>ann_ret_m <span class="op">=</span> returns[<span class="st">'CSI300'</span>].mean() <span class="op">*</span> <span class="dv">252</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 双图布局：净值 + 回撤</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>),</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>    gridspec_kw<span class="op">=</span>{<span class="st">"height_ratios"</span>: [<span class="dv">3</span>, <span class="fl">1.2</span>]},</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>    sharex<span class="op">=</span><span class="va">True</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 上半部分：净值曲线</span></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>ax1.plot(portfolio_nav.index, portfolio_nav,</span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">"#E63946"</span>, linewidth<span class="op">=</span><span class="fl">2.2</span>, zorder<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="ss">f"等权组合  年化收益=</span><span class="sc">{</span>ann_ret_p<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>ax1.plot(csi300_nav.index, csi300_nav,</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">"#457B9D"</span>, linewidth<span class="op">=</span><span class="fl">2.2</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, zorder<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="ss">f"沪深300   年化收益=</span><span class="sc">{</span>ann_ret_m<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>ax1.fill_between(portfolio_nav.index, portfolio_nav, csi300_nav,</span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>                 where<span class="op">=</span>(portfolio_nav <span class="op">&gt;=</span> csi300_nav),</span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>                 color<span class="op">=</span><span class="st">"#E63946"</span>, alpha<span class="op">=</span><span class="fl">0.10</span>, label<span class="op">=</span><span class="st">"组合跑赢区间"</span>)</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>ax1.fill_between(portfolio_nav.index, portfolio_nav, csi300_nav,</span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>                 where<span class="op">=</span>(portfolio_nav <span class="op">&lt;</span> csi300_nav),</span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>                 color<span class="op">=</span><span class="st">"#457B9D"</span>, alpha<span class="op">=</span><span class="fl">0.10</span>, label<span class="op">=</span><span class="st">"组合跑输区间"</span>)</span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>ax1.axhline(<span class="fl">1.0</span>, color<span class="op">=</span><span class="st">"gray"</span>, linewidth<span class="op">=</span><span class="fl">0.7</span>, linestyle<span class="op">=</span><span class="st">":"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"累计净值（基期 = 1）"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"等权重投资组合净值曲线 vs 沪深300"</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>ax1.legend(fontsize<span class="op">=</span><span class="dv">9</span>, loc<span class="op">=</span><span class="st">"upper left"</span>, framealpha<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>ax1.yaxis.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a><span class="co"># 下半部分：回撤曲线</span></span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>ax2.fill_between(port_dd.index, port_dd <span class="op">*</span> <span class="dv">100</span>, <span class="dv">0</span>,</span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>                 color<span class="op">=</span><span class="st">"#E63946"</span>, alpha<span class="op">=</span><span class="fl">0.55</span>, label<span class="op">=</span><span class="st">"等权组合回撤"</span>)</span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>ax2.fill_between(csi300_dd.index, csi300_dd <span class="op">*</span> <span class="dv">100</span>, <span class="dv">0</span>,</span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a>                 color<span class="op">=</span><span class="st">"#457B9D"</span>, alpha<span class="op">=</span><span class="fl">0.35</span>, label<span class="op">=</span><span class="st">"沪深300回撤"</span>)</span>
+<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a>ax2.axhline(max_dd_p <span class="op">*</span> <span class="dv">100</span>, color<span class="op">=</span><span class="st">"#E63946"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>,</span>
+<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a>            linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.8</span>,</span>
+<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="ss">f"组合最大回撤 </span><span class="sc">{</span>max_dd_p<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a>ax2.axhline(max_dd_m <span class="op">*</span> <span class="dv">100</span>, color<span class="op">=</span><span class="st">"#457B9D"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>,</span>
+<span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a>            linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.8</span>,</span>
+<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="ss">f"沪深300最大回撤 </span><span class="sc">{</span>max_dd_m<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-61"><a href="#cb25-61" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"回撤（%）"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb25-62"><a href="#cb25-62" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">"日期"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb25-63"><a href="#cb25-63" aria-hidden="true" tabindex="-1"></a>ax2.legend(fontsize<span class="op">=</span><span class="dv">8</span>, loc<span class="op">=</span><span class="st">"lower left"</span>, framealpha<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb25-64"><a href="#cb25-64" aria-hidden="true" tabindex="-1"></a>ax2.yaxis.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb25-65"><a href="#cb25-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-66"><a href="#cb25-66" aria-hidden="true" tabindex="-1"></a><span class="co"># 保留你原来的关键事件标注</span></span>
+<span id="cb25-67"><a href="#cb25-67" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.dates <span class="im">as</span> mdates</span>
+<span id="cb25-68"><a href="#cb25-68" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> label, date <span class="kw">in</span> [(<span class="st">'COVID-19</span><span class="ch">\n</span><span class="st">2020-02'</span>, <span class="st">'2020-02-01'</span>), (<span class="st">'A股调整</span><span class="ch">\n</span><span class="st">2022-03'</span>, <span class="st">'2022-03-01'</span>)]:</span>
+<span id="cb25-69"><a href="#cb25-69" aria-hidden="true" tabindex="-1"></a>    ax1.axvline(pd.Timestamp(date), color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb25-70"><a href="#cb25-70" aria-hidden="true" tabindex="-1"></a>    ax1.annotate(label, xy<span class="op">=</span>(pd.Timestamp(date), ax1.get_ylim()[<span class="dv">1</span>]<span class="op">*</span><span class="fl">0.95</span>),</span>
+<span id="cb25-71"><a href="#cb25-71" aria-hidden="true" tabindex="-1"></a>                 fontsize<span class="op">=</span><span class="dv">9</span>, color<span class="op">=</span><span class="st">'gray'</span>, ha<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb25-72"><a href="#cb25-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-73"><a href="#cb25-73" aria-hidden="true" tabindex="-1"></a>ax2.xaxis.set_major_formatter(mdates.DateFormatter(<span class="st">"%Y-%m"</span>))</span>
+<span id="cb25-74"><a href="#cb25-74" aria-hidden="true" tabindex="-1"></a>ax2.xaxis.set_major_locator(mdates.MonthLocator(bymonth<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">7</span>]))</span>
+<span id="cb25-75"><a href="#cb25-75" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">30</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb25-76"><a href="#cb25-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-77"><a href="#cb25-77" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb25-78"><a href="#cb25-78" aria-hidden="true" tabindex="-1"></a>plt.savefig(os.path.join(OUTPUT_Q6, <span class="st">'portfolio_nav.png'</span>), dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb25-79"><a href="#cb25-79" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb25-80"><a href="#cb25-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-81"><a href="#cb25-81" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'组合净值曲线已保存至 output/Q6_portfolio/portfolio_nav.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_analysis_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>组合净值曲线已保存至 output/Q6_portfolio/portfolio_nav.png</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码绘制等权重组合与沪深300指数的净值曲线（初始净值=1）。等权重投资组合净值与沪深 300 的对比图显示，组合年化收益略低于基准，但最大回撤显著更小，在疫情、A 股调整等市场冲击阶段抗跌性更强，整体呈现“收益略降、风险明显收缩”的防御型特征。</p>
+<div id="cell-30" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存组合绩效结果</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>portfolio_results <span class="op">=</span> {</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Metric'</span>: [<span class="st">'年化收益率'</span>, <span class="st">'年化波动率'</span>, <span class="st">'最大回撤'</span>, <span class="st">'夏普比率'</span>, <span class="st">'Beta'</span>, <span class="st">'Alpha'</span>],</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Value'</span>: [</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        portfolio_metrics[<span class="st">'Ann. Return'</span>],</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        portfolio_metrics[<span class="st">'Ann. Volatility'</span>],</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        portfolio_metrics[<span class="st">'Max Drawdown'</span>],</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        portfolio_metrics[<span class="st">'Sharpe Ratio'</span>],</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        portfolio_beta,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        portfolio_alpha</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>portfolio_results_df <span class="op">=</span> pd.DataFrame(portfolio_results)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>portfolio_results_df.to_csv(os.path.join(OUTPUT_Q6, <span class="st">'portfolio_performance.csv'</span>), index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存净值数据</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>nav_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Portfolio'</span>: portfolio_nav,</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'CSI300'</span>: csi300_nav</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>nav_df.to_csv(os.path.join(OUTPUT_Q6, <span class="st">'nav_data.csv'</span>))</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'组合绩效数据已保存至 output/Q6_portfolio/'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>组合绩效数据已保存至 output/Q6_portfolio/</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码保存组合绩效数据和净值数据。这些数据支持后续的业绩归因分析和风险管理评估。</p>
+</section>
+<section id="有效前沿分析" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="有效前沿分析"><span class="header-section-number">4.5</span> 3.6 有效前沿分析</h2>
+<div id="cell-33" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 有效前沿分析</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取股票收益率数据</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>stock_returns_data <span class="op">=</span> returns[stock_names].dropna()</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算均值和协方差矩阵（年化）</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>mean_returns <span class="op">=</span> stock_returns_data.mean() <span class="op">*</span> <span class="dv">252</span>  <span class="co"># 年化收益率</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>cov_matrix <span class="op">=</span> stock_returns_data.cov() <span class="op">*</span> <span class="dv">252</span>     <span class="co"># 年化协方差</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'年化收益率:'</span>)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean_returns.<span class="bu">round</span>(<span class="dv">4</span>))</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">年化协方差矩阵:'</span>)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cov_matrix.<span class="bu">round</span>(<span class="dv">4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>年化收益率:
+ICBC       0.0643
+YILI       0.0529
+ZTE        0.0886
+YUNNAN     0.0446
+SINOPEC    0.0487
+dtype: float64
+
+年化协方差矩阵:
+           ICBC    YILI     ZTE  YUNNAN  SINOPEC
+ICBC     0.0107  0.0056  0.0028  0.0042   0.0061
+YILI     0.0056  0.0575  0.0278  0.0275   0.0046
+ZTE      0.0028  0.0278  0.1676  0.0275   0.0075
+YUNNAN   0.0042  0.0275  0.0275  0.0612   0.0053
+SINOPEC  0.0061  0.0046  0.0075  0.0053   0.0159</code></pre>
+</div>
+</div>
+<div id="cell-34" class="cell" data-execution_count="38">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mean_returns.to_numpy()</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>cov_matrix.to_numpy()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>array([[0.01071491, 0.00556276, 0.00280592, 0.00415003, 0.00612817],
+       [0.00556276, 0.05749975, 0.02779842, 0.0275355 , 0.00458834],
+       [0.00280592, 0.02779842, 0.16761901, 0.02747054, 0.00751007],
+       [0.00415003, 0.0275355 , 0.02747054, 0.06118675, 0.00528568],
+       [0.00612817, 0.00458834, 0.00751007, 0.00528568, 0.01588526]])</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码获取年化收益率均值向量和协方差矩阵。协方差矩阵描述了5只股票收益的联动结构，是构建有效前沿的核心输入数据。</p>
+<div id="cell-37" class="cell" data-execution_count="39">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义投资组合优化函数</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> portfolio_return(weights, mean_returns):</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""计算组合预期收益"""</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.dot(weights, mean_returns)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> portfolio_volatility(weights, cov_matrix):</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""计算组合波动率"""</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(np.dot(weights.T, np.dot(cov_matrix, weights)))</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> portfolio_sharpe(weights, mean_returns, cov_matrix, rf<span class="op">=</span>RF_ANNUAL):</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""计算夏普比率（负值用于最小化）"""</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    ret <span class="op">=</span> portfolio_return(weights, mean_returns)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    vol <span class="op">=</span> portfolio_volatility(weights, cov_matrix)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>(ret <span class="op">-</span> rf) <span class="op">/</span> vol</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 优化约束条件</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>n_assets <span class="op">=</span> <span class="bu">len</span>(stock_names)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>constraints <span class="op">=</span> {<span class="st">'type'</span>: <span class="st">'eq'</span>, <span class="st">'fun'</span>: <span class="kw">lambda</span> x: np.<span class="bu">sum</span>(x) <span class="op">-</span> <span class="dv">1</span>}  <span class="co"># 权重和为1</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>bounds <span class="op">=</span> <span class="bu">tuple</span>((<span class="dv">0</span>, <span class="dv">1</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_assets))  <span class="co"># 不允许做空</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>initial_weights <span class="op">=</span> np.ones(n_assets) <span class="op">/</span> n_assets</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'优化函数定义完成'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>优化函数定义完成</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码定义了三个优化函数：portfolio_return计算组合预期收益、portfolio_volatility计算组合波动率、portfolio_sharpe计算夏普比率（取负用于最小化）。</p>
+<div id="cell-39" class="cell" data-execution_count="40">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. 最小方差组合</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>result_min_var <span class="op">=</span> minimize(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> w: portfolio_volatility(w, cov_matrix)<span class="op">**</span><span class="dv">2</span>,  <span class="co"># 最小化方差</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    initial_weights,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    method<span class="op">=</span><span class="st">'SLSQP'</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    bounds<span class="op">=</span>bounds,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    constraints<span class="op">=</span>constraints</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>min_var_weights <span class="op">=</span> result_min_var.x</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>min_var_return <span class="op">=</span> portfolio_return(min_var_weights, mean_returns)</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>min_var_vol <span class="op">=</span> portfolio_volatility(min_var_weights, cov_matrix)</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>min_var_sharpe <span class="op">=</span> (min_var_return <span class="op">-</span> RF_ANNUAL) <span class="op">/</span> min_var_vol</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'最小方差组合:'</span>)</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, stock <span class="kw">in</span> <span class="bu">enumerate</span>(stock_names):</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  </span><span class="sc">{</span>stock<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>min_var_weights[i]<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%'</span>)</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'预期收益: </span><span class="sc">{</span>min_var_return<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%'</span>)</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'波动率:   </span><span class="sc">{</span>min_var_vol<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%'</span>)</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'夏普比率: </span><span class="sc">{</span>min_var_sharpe<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>最小方差组合:
+  ICBC: 61.32%
+  YILI: 3.89%
+  ZTE: 1.38%
+  YUNNAN: 5.37%
+  SINOPEC: 28.04%
+预期收益: 5.88%
+波动率:   9.36%
+夏普比率: 0.3605</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码通过优化算法求解最小方差组合。在所有满足权重约束（权重和为1，非负）的组合中，该组合实现最低波动率（9.36%）。通常会给低波动资产（如银行股）更高权重。</p>
+<div id="cell-41" class="cell" data-execution_count="41">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. 最大夏普比率组合</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>result_max_sharpe <span class="op">=</span> minimize(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> w: portfolio_sharpe(w, mean_returns, cov_matrix),</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    initial_weights,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    method<span class="op">=</span><span class="st">'SLSQP'</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    bounds<span class="op">=</span>bounds,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    constraints<span class="op">=</span>constraints</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>max_sharpe_weights <span class="op">=</span> result_max_sharpe.x</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>max_sharpe_return <span class="op">=</span> portfolio_return(max_sharpe_weights, mean_returns)</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>max_sharpe_vol <span class="op">=</span> portfolio_volatility(max_sharpe_weights, cov_matrix)</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>max_sharpe_ratio <span class="op">=</span> (max_sharpe_return <span class="op">-</span> RF_ANNUAL) <span class="op">/</span> max_sharpe_vol</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'最大夏普比率组合:'</span>)</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, stock <span class="kw">in</span> <span class="bu">enumerate</span>(stock_names):</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  </span><span class="sc">{</span>stock<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>max_sharpe_weights[i]<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%'</span>)</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'预期收益: </span><span class="sc">{</span>max_sharpe_return<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%'</span>)</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'波动率:   </span><span class="sc">{</span>max_sharpe_vol<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%'</span>)</span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'夏普比率: </span><span class="sc">{</span>max_sharpe_ratio<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>最大夏普比率组合:
+  ICBC: 91.83%
+  YILI: 0.00%
+  ZTE: 8.17%
+  YUNNAN: 0.00%
+  SINOPEC: 0.00%
+预期收益: 6.63%
+波动率:   10.28%
+夏普比率: 0.4017</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码通过优化算法求解最大夏普比率组合。该组合在给定无风险利率下实现单位风险的最高回报（夏普比率0.40），是资本配置线与有效前沿的切点组合。</p>
+<div id="cell-43" class="cell" data-execution_count="42">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 蒙特卡洛模拟</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>n_simulations <span class="op">=</span> <span class="dv">50000</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>sim_returns <span class="op">=</span> []</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>sim_volatilities <span class="op">=</span> []</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>sim_sharpes <span class="op">=</span> []</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'开始蒙特卡洛模拟 (</span><span class="sc">{</span>n_simulations<span class="sc">}</span><span class="ss"> 次)...'</span>)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_simulations):</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 随机生成权重</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    weights <span class="op">=</span> np.random.random(n_assets)</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    weights <span class="op">=</span> weights <span class="op">/</span> np.<span class="bu">sum</span>(weights)  <span class="co"># 归一化</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 计算组合指标</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>    ret <span class="op">=</span> portfolio_return(weights, mean_returns)</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>    vol <span class="op">=</span> portfolio_volatility(weights, cov_matrix)</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    sharpe <span class="op">=</span> (ret <span class="op">-</span> RF_ANNUAL) <span class="op">/</span> vol</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>    sim_returns.append(ret)</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>    sim_volatilities.append(vol)</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>    sim_sharpes.append(sharpe)</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>sim_returns <span class="op">=</span> np.array(sim_returns)</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>sim_volatilities <span class="op">=</span> np.array(sim_volatilities)</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>sim_sharpes <span class="op">=</span> np.array(sim_sharpes)</span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'蒙特卡洛模拟完成！'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>开始蒙特卡洛模拟 (50000 次)...
+蒙特卡洛模拟完成！</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码通过蒙特卡洛模拟生成5000个随机权重组合。随机组合覆盖可行域，颜色映射夏普比率，直观展示风险-收益权衡关系，验证有效前沿的存在性。</p>
+<div id="cell-45" class="cell" data-execution_count="43">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制有效前沿</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制蒙特卡洛模拟散点</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> ax.scatter(sim_volatilities<span class="op">*</span><span class="dv">100</span>, sim_returns<span class="op">*</span><span class="dv">100</span>,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>                      c<span class="op">=</span>sim_sharpes, cmap<span class="op">=</span><span class="st">'viridis'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, s<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加颜色条</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>cbar <span class="op">=</span> plt.colorbar(scatter, ax<span class="op">=</span>ax)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>cbar.set_label(<span class="st">'夏普比率'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 等权重组合</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>eq_weights <span class="op">=</span> np.ones(n_assets) <span class="op">/</span> n_assets</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>eq_return <span class="op">=</span> portfolio_return(eq_weights, mean_returns)</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>eq_vol <span class="op">=</span> portfolio_volatility(eq_weights, cov_matrix)</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>eq_sharpe <span class="op">=</span> (eq_return <span class="op">-</span> RF_ANNUAL) <span class="op">/</span> eq_vol</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>ax.scatter(eq_vol<span class="op">*</span><span class="dv">100</span>, eq_return<span class="op">*</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'blue'</span>, s<span class="op">=</span><span class="dv">200</span>, marker<span class="op">=</span><span class="st">'D'</span>,</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>           edgecolors<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'等权重组合'</span>)</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 最小方差组合</span></span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>ax.scatter(min_var_vol<span class="op">*</span><span class="dv">100</span>, min_var_return<span class="op">*</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'green'</span>, s<span class="op">=</span><span class="dv">200</span>, marker<span class="op">=</span><span class="st">'*'</span>,</span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>           edgecolors<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'最小方差组合'</span>)</span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 最大夏普比率组合</span></span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>ax.scatter(max_sharpe_vol<span class="op">*</span><span class="dv">100</span>, max_sharpe_return<span class="op">*</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'red'</span>, s<span class="op">=</span><span class="dv">200</span>, marker<span class="op">=</span><span class="st">'*'</span>,</span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>           edgecolors<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'最大夏普组合'</span>)</span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制有效前沿曲线</span></span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>target_returns <span class="op">=</span> np.linspace(min_var_return, np.<span class="bu">max</span>(sim_returns), <span class="dv">50</span>)</span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>efficient_vols <span class="op">=</span> []</span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> target_ret <span class="kw">in</span> target_returns:</span>
+<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a>    constraints_ef <span class="op">=</span> [</span>
+<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'type'</span>: <span class="st">'eq'</span>, <span class="st">'fun'</span>: <span class="kw">lambda</span> x: np.<span class="bu">sum</span>(x) <span class="op">-</span> <span class="dv">1</span>},</span>
+<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'type'</span>: <span class="st">'eq'</span>, <span class="st">'fun'</span>: <span class="kw">lambda</span> x, r<span class="op">=</span>target_ret: portfolio_return(x, mean_returns) <span class="op">-</span> r}</span>
+<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> minimize(</span>
+<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a>        <span class="kw">lambda</span> w: portfolio_volatility(w, cov_matrix),</span>
+<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a>        initial_weights,</span>
+<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a>        method<span class="op">=</span><span class="st">'SLSQP'</span>,</span>
+<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a>        bounds<span class="op">=</span>bounds,</span>
+<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a>        constraints<span class="op">=</span>constraints_ef,</span>
+<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a>        options<span class="op">=</span>{<span class="st">'ftol'</span>: <span class="fl">1e-10</span>}</span>
+<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> result.success:</span>
+<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a>        efficient_vols.append(portfolio_volatility(result.x, cov_matrix))</span>
+<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a>        efficient_vols.append(np.nan)</span>
+<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a>ax.plot(np.array(efficient_vols)<span class="op">*</span><span class="dv">100</span>, target_returns<span class="op">*</span><span class="dv">100</span>, <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb41-51"><a href="#cb41-51" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">'有效前沿'</span>, zorder<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb41-52"><a href="#cb41-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-53"><a href="#cb41-53" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'年化波动率 (%)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb41-54"><a href="#cb41-54" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'年化预期收益 (%)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb41-55"><a href="#cb41-55" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'投资组合有效前沿'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb41-57"><a href="#cb41-57" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb41-58"><a href="#cb41-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb41-60"><a href="#cb41-60" aria-hidden="true" tabindex="-1"></a>plt.savefig(os.path.join(OUTPUT_Q7, <span class="st">'efficient_frontier.png'</span>), dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb41-61"><a href="#cb41-61" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb41-62"><a href="#cb41-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-63"><a href="#cb41-63" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'有效前沿图已保存至 output/Q7_efficient_frontier/efficient_frontier.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_analysis_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>有效前沿图已保存至 output/Q7_efficient_frontier/efficient_frontier.png</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码绘制有效前沿曲线，标注三个特殊组合的位置。有效前沿是给定风险水平下收益最高（或给定收益下风险最低）的组合集合，红线为有效前沿边界，值得注意的是，尽管模拟高达5000次，但是模拟结果出现了明显的偏离，几乎无法描绘有效前沿曲线，这是因为AI在这里错误的提供了<code>[0，1]</code>的随机分布，应使用狄利克雷分布，在5维情况下，边缘生成概率将相差24倍，并以<code>(n-1)!</code>倍数随着维度增加而放大，本文不做详细数学证明，下面将使用狄利克雷分布（alpha = 1）进行模拟</p>
+<div id="cell-47" class="cell" data-execution_count="50">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. 蒙特卡洛模拟 (使用狄利克雷分布)</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>n_simulations_dirichlet <span class="op">=</span> <span class="dv">50000</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用全新的变量名存储狄利克雷分布的模拟结果</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>dirichlet_returns <span class="op">=</span> []</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>dirichlet_volatilities <span class="op">=</span> []</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>dirichlet_sharpes <span class="op">=</span> []</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'开始狄利克雷分布蒙特卡洛模拟 (</span><span class="sc">{</span>n_simulations_dirichlet<span class="sc">}</span><span class="ss"> 次)...'</span>)</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_simulations_dirichlet):</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 【核心修改】使用狄利克雷分布生成均匀的随机权重，直接满足和为1且均大于0</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># np.ones(n_assets) 表示在单纯形上进行完全均匀的采样</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 将 alpha 参数设置为小于 1 的值（比如 0.15），迫使权重向极端值集中</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># alpha_value = 0.15 </span></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># weights_dirichlet = np.random.dirichlet(np.ones(n_assets) * alpha_value)</span></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>    weights_dirichlet <span class="op">=</span> np.random.dirichlet(np.ones(n_assets))</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 计算组合指标</span></span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>    ret_d <span class="op">=</span> portfolio_return(weights_dirichlet, mean_returns)</span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>    vol_d <span class="op">=</span> portfolio_volatility(weights_dirichlet, cov_matrix)</span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>    sharpe_d <span class="op">=</span> (ret_d <span class="op">-</span> RF_ANNUAL) <span class="op">/</span> vol_d</span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a>    dirichlet_returns.append(ret_d)</span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a>    dirichlet_volatilities.append(vol_d)</span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a>    dirichlet_sharpes.append(sharpe_d)</span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a>dirichlet_returns <span class="op">=</span> np.array(dirichlet_returns)</span>
+<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a>dirichlet_volatilities <span class="op">=</span> np.array(dirichlet_volatilities)</span>
+<span id="cb43-31"><a href="#cb43-31" aria-hidden="true" tabindex="-1"></a>dirichlet_sharpes <span class="op">=</span> np.array(dirichlet_sharpes)</span>
+<span id="cb43-32"><a href="#cb43-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-33"><a href="#cb43-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'狄利克雷蒙特卡洛模拟完成！'</span>)</span>
+<span id="cb43-34"><a href="#cb43-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-35"><a href="#cb43-35" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------- 绘制图表部分 ----------------</span></span>
+<span id="cb43-36"><a href="#cb43-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-37"><a href="#cb43-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制有效前沿</span></span>
+<span id="cb43-38"><a href="#cb43-38" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb43-39"><a href="#cb43-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-40"><a href="#cb43-40" aria-hidden="true" tabindex="-1"></a><span class="co"># 【修改】绘制狄利克雷蒙特卡洛模拟散点，使用新的变量名</span></span>
+<span id="cb43-41"><a href="#cb43-41" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> ax.scatter(dirichlet_volatilities<span class="op">*</span><span class="dv">100</span>, dirichlet_returns<span class="op">*</span><span class="dv">100</span>,</span>
+<span id="cb43-42"><a href="#cb43-42" aria-hidden="true" tabindex="-1"></a>                      c<span class="op">=</span>dirichlet_sharpes, cmap<span class="op">=</span><span class="st">'viridis'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, s<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb43-43"><a href="#cb43-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-44"><a href="#cb43-44" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加颜色条</span></span>
+<span id="cb43-45"><a href="#cb43-45" aria-hidden="true" tabindex="-1"></a>cbar <span class="op">=</span> plt.colorbar(scatter, ax<span class="op">=</span>ax)</span>
+<span id="cb43-46"><a href="#cb43-46" aria-hidden="true" tabindex="-1"></a>cbar.set_label(<span class="st">'夏普比率'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb43-47"><a href="#cb43-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-48"><a href="#cb43-48" aria-hidden="true" tabindex="-1"></a><span class="co"># 等权重组合</span></span>
+<span id="cb43-49"><a href="#cb43-49" aria-hidden="true" tabindex="-1"></a>eq_weights <span class="op">=</span> np.ones(n_assets) <span class="op">/</span> n_assets</span>
+<span id="cb43-50"><a href="#cb43-50" aria-hidden="true" tabindex="-1"></a>eq_return <span class="op">=</span> portfolio_return(eq_weights, mean_returns)</span>
+<span id="cb43-51"><a href="#cb43-51" aria-hidden="true" tabindex="-1"></a>eq_vol <span class="op">=</span> portfolio_volatility(eq_weights, cov_matrix)</span>
+<span id="cb43-52"><a href="#cb43-52" aria-hidden="true" tabindex="-1"></a>eq_sharpe <span class="op">=</span> (eq_return <span class="op">-</span> RF_ANNUAL) <span class="op">/</span> eq_vol</span>
+<span id="cb43-53"><a href="#cb43-53" aria-hidden="true" tabindex="-1"></a>ax.scatter(eq_vol<span class="op">*</span><span class="dv">100</span>, eq_return<span class="op">*</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'blue'</span>, s<span class="op">=</span><span class="dv">200</span>, marker<span class="op">=</span><span class="st">'D'</span>,</span>
+<span id="cb43-54"><a href="#cb43-54" aria-hidden="true" tabindex="-1"></a>           edgecolors<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'等权重组合'</span>)</span>
+<span id="cb43-55"><a href="#cb43-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-56"><a href="#cb43-56" aria-hidden="true" tabindex="-1"></a><span class="co"># 最小方差组合 (假设 min_var_vol, min_var_return 在之前的代码中已计算)</span></span>
+<span id="cb43-57"><a href="#cb43-57" aria-hidden="true" tabindex="-1"></a>ax.scatter(min_var_vol<span class="op">*</span><span class="dv">100</span>, min_var_return<span class="op">*</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'green'</span>, s<span class="op">=</span><span class="dv">200</span>, marker<span class="op">=</span><span class="st">'*'</span>,</span>
+<span id="cb43-58"><a href="#cb43-58" aria-hidden="true" tabindex="-1"></a>           edgecolors<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'最小方差组合'</span>)</span>
+<span id="cb43-59"><a href="#cb43-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-60"><a href="#cb43-60" aria-hidden="true" tabindex="-1"></a><span class="co"># 最大夏普比率组合 (假设 max_sharpe_vol, max_sharpe_return 在之前的代码中已计算)</span></span>
+<span id="cb43-61"><a href="#cb43-61" aria-hidden="true" tabindex="-1"></a>ax.scatter(max_sharpe_vol<span class="op">*</span><span class="dv">100</span>, max_sharpe_return<span class="op">*</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">'red'</span>, s<span class="op">=</span><span class="dv">200</span>, marker<span class="op">=</span><span class="st">'*'</span>,</span>
+<span id="cb43-62"><a href="#cb43-62" aria-hidden="true" tabindex="-1"></a>           edgecolors<span class="op">=</span><span class="st">'white'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'最大夏普组合'</span>)</span>
+<span id="cb43-63"><a href="#cb43-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-64"><a href="#cb43-64" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制有效前沿曲线</span></span>
+<span id="cb43-65"><a href="#cb43-65" aria-hidden="true" tabindex="-1"></a><span class="co"># 【修改】使用 dirichlet_returns 的最大值来确定前沿曲线的上限</span></span>
+<span id="cb43-66"><a href="#cb43-66" aria-hidden="true" tabindex="-1"></a>target_returns <span class="op">=</span> np.linspace(min_var_return, np.<span class="bu">max</span>(dirichlet_returns), <span class="dv">50</span>)</span>
+<span id="cb43-67"><a href="#cb43-67" aria-hidden="true" tabindex="-1"></a>efficient_vols <span class="op">=</span> []</span>
+<span id="cb43-68"><a href="#cb43-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-69"><a href="#cb43-69" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> target_ret <span class="kw">in</span> target_returns:</span>
+<span id="cb43-70"><a href="#cb43-70" aria-hidden="true" tabindex="-1"></a>    constraints_ef <span class="op">=</span> [</span>
+<span id="cb43-71"><a href="#cb43-71" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'type'</span>: <span class="st">'eq'</span>, <span class="st">'fun'</span>: <span class="kw">lambda</span> x: np.<span class="bu">sum</span>(x) <span class="op">-</span> <span class="dv">1</span>},</span>
+<span id="cb43-72"><a href="#cb43-72" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'type'</span>: <span class="st">'eq'</span>, <span class="st">'fun'</span>: <span class="kw">lambda</span> x, r<span class="op">=</span>target_ret: portfolio_return(x, mean_returns) <span class="op">-</span> r}</span>
+<span id="cb43-73"><a href="#cb43-73" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb43-74"><a href="#cb43-74" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> minimize(</span>
+<span id="cb43-75"><a href="#cb43-75" aria-hidden="true" tabindex="-1"></a>        <span class="kw">lambda</span> w: portfolio_volatility(w, cov_matrix),</span>
+<span id="cb43-76"><a href="#cb43-76" aria-hidden="true" tabindex="-1"></a>        initial_weights,  <span class="co"># 假设 initial_weights 在之前的代码中已定义</span></span>
+<span id="cb43-77"><a href="#cb43-77" aria-hidden="true" tabindex="-1"></a>        method<span class="op">=</span><span class="st">'SLSQP'</span>,</span>
+<span id="cb43-78"><a href="#cb43-78" aria-hidden="true" tabindex="-1"></a>        bounds<span class="op">=</span>bounds,    <span class="co"># 假设 bounds 在之前的代码中已定义</span></span>
+<span id="cb43-79"><a href="#cb43-79" aria-hidden="true" tabindex="-1"></a>        constraints<span class="op">=</span>constraints_ef,</span>
+<span id="cb43-80"><a href="#cb43-80" aria-hidden="true" tabindex="-1"></a>        options<span class="op">=</span>{<span class="st">'ftol'</span>: <span class="fl">1e-10</span>}</span>
+<span id="cb43-81"><a href="#cb43-81" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb43-82"><a href="#cb43-82" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> result.success:</span>
+<span id="cb43-83"><a href="#cb43-83" aria-hidden="true" tabindex="-1"></a>        efficient_vols.append(portfolio_volatility(result.x, cov_matrix))</span>
+<span id="cb43-84"><a href="#cb43-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb43-85"><a href="#cb43-85" aria-hidden="true" tabindex="-1"></a>        efficient_vols.append(np.nan)</span>
+<span id="cb43-86"><a href="#cb43-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-87"><a href="#cb43-87" aria-hidden="true" tabindex="-1"></a>ax.plot(np.array(efficient_vols)<span class="op">*</span><span class="dv">100</span>, target_returns<span class="op">*</span><span class="dv">100</span>, <span class="st">'r-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb43-88"><a href="#cb43-88" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">'有效前沿'</span>, zorder<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb43-89"><a href="#cb43-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-90"><a href="#cb43-90" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'年化波动率 (%)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb43-91"><a href="#cb43-91" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'年化预期收益 (%)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb43-92"><a href="#cb43-92" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'投资组合有效前沿 (狄利克雷分布采样)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb43-93"><a href="#cb43-93" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb43-94"><a href="#cb43-94" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb43-95"><a href="#cb43-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-96"><a href="#cb43-96" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb43-97"><a href="#cb43-97" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设 OUTPUT_Q7 在之前的代码中已定义</span></span>
+<span id="cb43-98"><a href="#cb43-98" aria-hidden="true" tabindex="-1"></a>plt.savefig(os.path.join(OUTPUT_Q7, <span class="st">'efficient_frontier_dirichlet.png'</span>), dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb43-99"><a href="#cb43-99" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb43-100"><a href="#cb43-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-101"><a href="#cb43-101" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'有效前沿图已保存至 output/Q7_efficient_frontier/efficient_frontier_dirichlet.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>开始狄利克雷分布蒙特卡洛模拟 (50000 次)...
+狄利克雷蒙特卡洛模拟完成！</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="portfolio_analysis_files/figure-html/cell-23-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>有效前沿图已保存至 output/Q7_efficient_frontier/efficient_frontier_dirichlet.png</code></pre>
+</div>
+</div>
+<p><strong>结果解读：</strong> 该蒙特卡洛模拟结果相比上一节提供的模拟结果拥有更好的模拟效果，不过依然能观察到在有效前沿曲线上沿依然存在一些真空，这是由于非线性缩放与随机权重的中心聚集现象共同作用的结果，在附录中将提供一定的数学解释</p>
+<div id="cell-49" class="cell" data-execution_count="51">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 保存有效前沿相关结果</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>efficient_frontier_results <span class="op">=</span> {</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'组合类型'</span>: [<span class="st">'等权重组合'</span>, <span class="st">'最小方差组合'</span>, <span class="st">'最大夏普组合'</span>],</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ICBC'</span>: [eq_weights[<span class="dv">0</span>], min_var_weights[<span class="dv">0</span>], max_sharpe_weights[<span class="dv">0</span>]],</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'YILI'</span>: [eq_weights[<span class="dv">1</span>], min_var_weights[<span class="dv">1</span>], max_sharpe_weights[<span class="dv">1</span>]],</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'ZTE'</span>: [eq_weights[<span class="dv">2</span>], min_var_weights[<span class="dv">2</span>], max_sharpe_weights[<span class="dv">2</span>]],</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'YUNNAN'</span>: [eq_weights[<span class="dv">3</span>], min_var_weights[<span class="dv">3</span>], max_sharpe_weights[<span class="dv">3</span>]],</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SINOPEC'</span>: [eq_weights[<span class="dv">4</span>], min_var_weights[<span class="dv">4</span>], max_sharpe_weights[<span class="dv">4</span>]],</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'年化收益'</span>: [eq_return, min_var_return, max_sharpe_return],</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'年化波动'</span>: [eq_vol, min_var_vol, max_sharpe_vol],</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'夏普比率'</span>: [eq_sharpe, min_var_sharpe, max_sharpe_ratio]</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>ef_df <span class="op">=</span> pd.DataFrame(efficient_frontier_results)</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>ef_df.to_csv(os.path.join(OUTPUT_Q7, <span class="st">'efficient_frontier_portfolios.csv'</span>), index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'有效前沿特殊组合对比'</span>)</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ef_df.<span class="bu">round</span>(<span class="dv">4</span>).to_string(index<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================
+有效前沿特殊组合对比
+================================================================================
+  组合类型   ICBC   YILI    ZTE  YUNNAN  SINOPEC   年化收益   年化波动   夏普比率
+ 等权重组合 0.2000 0.2000 0.2000  0.2000   0.2000 0.0598 0.1484 0.2345
+最小方差组合 0.6132 0.0389 0.0138  0.0537   0.2804 0.0588 0.0936 0.3605
+最大夏普组合 0.9183 0.0000 0.0817  0.0000   0.0000 0.0663 0.1028 0.4017</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码保存有效前沿特殊组合的配置和绩效数据，包括等权重组合、最小方差组合和最大夏普组合的权重分配、年化收益、波动率和夏普比率。</p>
+<div id="cell-51" class="cell" data-execution_count="52">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 打印任务完成信息</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'投资组合分析完成！'</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'='</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">生成的数据文件:'</span>)</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  1. correlation_matrix.csv - 相关系数矩阵'</span>)</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  2. rolling_correlation.csv - 滚动相关系数'</span>)</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  3. portfolio_performance.csv - 组合绩效指标'</span>)</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  4. nav_data.csv - 净值数据'</span>)</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  5. efficient_frontier_portfolios.csv - 有效前沿组合'</span>)</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">生成的图形文件:'</span>)</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  1. correlation_heatmap.png - 相关系数热力图'</span>)</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  2. rolling_correlation.png - 滚动相关系数时序图'</span>)</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  3. portfolio_nav.png - 组合净值曲线'</span>)</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'  4. efficient_frontier.png - 有效前沿图'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>================================================================================
+投资组合分析完成！
+================================================================================
+
+生成的数据文件:
+  1. correlation_matrix.csv - 相关系数矩阵
+  2. rolling_correlation.csv - 滚动相关系数
+  3. portfolio_performance.csv - 组合绩效指标
+  4. nav_data.csv - 净值数据
+  5. efficient_frontier_portfolios.csv - 有效前沿组合
+
+生成的图形文件:
+  1. correlation_heatmap.png - 相关系数热力图
+  2. rolling_correlation.png - 滚动相关系数时序图
+  3. portfolio_nav.png - 组合净值曲线
+  4. efficient_frontier.png - 有效前沿图</code></pre>
+</div>
+</div>
+<p><strong>结果解读</strong>: 本代码打印投资组合分析任务的完成信息，列出生成的数据文件和图形文件清单，包括相关系数矩阵、滚动相关系数、组合绩效、净值曲线和有效前沿分析结果。</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/quarto_book\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../body/beta_estimation.html" class="pagination-link" aria-label="02 Beta系数估计">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">02 Beta系数估计</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../body/蒙特卡洛模拟在高维数据中的困境.html" class="pagination-link" aria-label="探讨蒙特卡罗模拟在高维数据中的困境">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">探讨蒙特卡罗模拟在高维数据中的困境</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
