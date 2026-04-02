@@ -3,7 +3,7 @@ project:
   output-dir: docs  # 输出目录, 生成的 HTML 文件会放在 docs 目录下
 
 book:
-  title: "Quarto Book"
+  title: "小组作业"
   reader-mode: true 
   author: "赵颐安"
   date: today
@@ -12,15 +12,16 @@ book:
   
   sidebar:    # 侧边栏配置
     title: "小组报告"
-    logo-href: https://lianxhcn.github.io/quarto_book/
+    logo: images/logo.png 
+    logo-href: https://github.com/chaoyian/teamworkquartobook
     style: floating  #docked
     search: true
     tools:
       - icon: github
         href: https://github.com/lianxhcn/quarto_book
 
-  favicon: images/book-logo.png   # URL logo
-  site-url: https://lianxhcn.github.io/quarto_book/ # 主页地址, 否则点击右上角链接会乱码
+  favicon: images/logo.png   # URL logo
+  site-url: https://github.com/chaoyian/teamworkquartobook # 主页地址, 否则点击右上角链接会乱码
   editor: source    # 始终采用源代码模式编辑
 
 #----------------------- Chapters ---------------

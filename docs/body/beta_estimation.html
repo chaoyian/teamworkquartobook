@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; 02 Beta系数估计 – Quarto Book</title>
+<title>3&nbsp; Beta系数估计 – 小组作业</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <link href="../body/portfolio_analysis.html" rel="next">
 <link href="../body/data_download.html" rel="prev">
-<link href="../images/book-logo.png" rel="icon" type="image/png">
+<link href="../images/logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -151,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_download.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/beta_estimation.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">02 Beta系数估计</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_download.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/beta_estimation.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beta系数估计</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -164,7 +164,11 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://github.com/chaoyian/teamworkquartobook" class="sidebar-logo-link">
+      <img src="../images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">小组报告</a> 
         <div class="sidebar-tools-main">
@@ -202,19 +206,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/data_download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">01 数据下载与预处理</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据下载与预处理</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/beta_estimation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">02 Beta系数估计</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beta系数估计</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/portfolio_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">03 相关性分析与投资组合构建</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">相关性分析与投资组合构建</span></span></a>
   </div>
 </li>
       </ul>
@@ -246,20 +250,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#目的与说明" id="toc-目的与说明" class="nav-link active" data-scroll-target="#目的与说明"><span class="header-section-number">3.1</span> 2.1 目的与说明</a></li>
-  <li><a href="#全样本beta系数估计" id="toc-全样本beta系数估计" class="nav-link" data-scroll-target="#全样本beta系数估计"><span class="header-section-number">3.2</span> 2.3 全样本Beta系数估计</a></li>
-  <li><a href="#残差诊断" id="toc-残差诊断" class="nav-link" data-scroll-target="#残差诊断"><span class="header-section-number">3.3</span> 2.4 残差诊断</a></li>
-  <li><a href="#分年度beta系数估计" id="toc-分年度beta系数估计" class="nav-link" data-scroll-target="#分年度beta系数估计"><span class="header-section-number">3.4</span> 2.5 分年度Beta系数估计</a></li>
-  <li><a href="#滚动beta系数估计" id="toc-滚动beta系数估计" class="nav-link" data-scroll-target="#滚动beta系数估计"><span class="header-section-number">3.5</span> 2.6 滚动Beta系数估计</a></li>
+  <li><a href="#目的与说明" id="toc-目的与说明" class="nav-link active" data-scroll-target="#目的与说明"><span class="header-section-number">3.1</span> 目的与说明</a></li>
+  <li><a href="#全样本beta系数估计" id="toc-全样本beta系数估计" class="nav-link" data-scroll-target="#全样本beta系数估计"><span class="header-section-number">3.2</span> 全样本Beta系数估计</a></li>
+  <li><a href="#残差诊断" id="toc-残差诊断" class="nav-link" data-scroll-target="#残差诊断"><span class="header-section-number">3.3</span> 残差诊断</a></li>
+  <li><a href="#分年度beta系数估计" id="toc-分年度beta系数估计" class="nav-link" data-scroll-target="#分年度beta系数估计"><span class="header-section-number">3.4</span> 分年度Beta系数估计</a></li>
+  <li><a href="#滚动beta系数估计" id="toc-滚动beta系数估计" class="nav-link" data-scroll-target="#滚动beta系数估计"><span class="header-section-number">3.5</span> 滚动Beta系数估计</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_download.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/beta_estimation.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">02 Beta系数估计</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_download.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/beta_estimation.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beta系数估计</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">02 Beta系数估计</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beta系数估计</span></h1>
 </div>
 
 
@@ -277,7 +281,7 @@ window.Quarto = {
 
 
 <section id="目的与说明" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="目的与说明"><span class="header-section-number">3.1</span> 2.1 目的与说明</h2>
+<h2 data-number="3.1" class="anchored" data-anchor-id="目的与说明"><span class="header-section-number">3.1</span> 目的与说明</h2>
 <p>本notebook完成以下任务：</p>
 <ol type="1">
 <li><p><strong>全样本Beta估计</strong>: 基于CAPM超额收益模型，使用OLS回归估计每只股票的全样本Beta系数</p></li>
@@ -373,7 +377,7 @@ dtype: float64</code></pre>
 <p><strong>结果解读</strong>: 本代码通过将各资产收益率减去无风险利率日值来计算超额收益，超额收益反映承担风险获得的额外回报（风险溢价）。科技股ZTE年化超额收益最高（6.36%），医药股YUNNAN最低（1.96%）。</p>
 </section>
 <section id="全样本beta系数估计" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="全样本beta系数估计"><span class="header-section-number">3.2</span> 2.3 全样本Beta系数估计</h2>
+<h2 data-number="3.2" class="anchored" data-anchor-id="全样本beta系数估计"><span class="header-section-number">3.2</span> 全样本Beta系数估计</h2>
 <div id="cell-8" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义CAPM回归函数</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> capm_regression(stock_excess, market_excess):</span>
@@ -515,7 +519,7 @@ SINOPEC  0.000058  0.223074 *** 0.113029 0.007477 1739
 <p><strong>结果解读</strong>: 本代码保存全样本Beta估计结果至CSV文件，包含每只股票的Alpha、Beta、R²及显著性检验信息。</p>
 </section>
 <section id="残差诊断" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="残差诊断"><span class="header-section-number">3.3</span> 2.4 残差诊断</h2>
+<h2 data-number="3.3" class="anchored" data-anchor-id="残差诊断"><span class="header-section-number">3.3</span> 残差诊断</h2>
 <div id="cell-15" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 对每只股票的回归残差进行诊断检验</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>residual_diagnostics <span class="op">=</span> []</span>
@@ -643,7 +647,7 @@ SINOPEC 34.0077 0.0002     Reject H0   21.0817    0.0000     Reject H0
 <p><strong>结果解读</strong>: 本代码保存残差诊断检验结果。Ljung-Box检验和White检验结果将揭示CAPM模型是否存在设定偏误，指导后续模型的改进方向。</p>
 </section>
 <section id="分年度beta系数估计" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="分年度beta系数估计"><span class="header-section-number">3.4</span> 2.5 分年度Beta系数估计</h2>
+<h2 data-number="3.4" class="anchored" data-anchor-id="分年度beta系数估计"><span class="header-section-number">3.4</span> 分年度Beta系数估计</h2>
 <div id="cell-22" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加年份列</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>returns_with_year <span class="op">=</span> returns.copy()</span>
@@ -768,7 +772,7 @@ Year
 <p><strong>结果解读</strong>: 本代码保存分年度Beta结果至CSV文件，便于后续分析和报告使用。</p>
 </section>
 <section id="滚动beta系数估计" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="滚动beta系数估计"><span class="header-section-number">3.5</span> 2.6 滚动Beta系数估计</h2>
+<h2 data-number="3.5" class="anchored" data-anchor-id="滚动beta系数估计"><span class="header-section-number">3.5</span> 滚动Beta系数估计</h2>
 <div id="cell-33" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 滚动Beta估计</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rolling_beta(stock_excess, market_excess, window<span class="op">=</span><span class="dv">60</span>):</span>
@@ -1067,7 +1071,7 @@ Beta系数估计完成！
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/quarto_book\/");
+        var filterRegex = new RegExp("https:\/\/github\.com\/chaoyian\/teamworkquartobook");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1401,13 +1405,13 @@ Beta系数估计完成！
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../body/data_download.html" class="pagination-link" aria-label="01 数据下载与预处理">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">01 数据下载与预处理</span></span>
+      <a href="../body/data_download.html" class="pagination-link" aria-label="数据下载与预处理">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据下载与预处理</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../body/portfolio_analysis.html" class="pagination-link" aria-label="03 相关性分析与投资组合构建">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">03 相关性分析与投资组合构建</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../body/portfolio_analysis.html" class="pagination-link" aria-label="相关性分析与投资组合构建">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">相关性分析与投资组合构建</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

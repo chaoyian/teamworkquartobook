@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; 03 相关性分析与投资组合构建 – Quarto Book</title>
+<title>4&nbsp; 相关性分析与投资组合构建 – 小组作业</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <link href="../body/蒙特卡洛模拟在高维数据中的困境.html" rel="next">
 <link href="../body/beta_estimation.html" rel="prev">
-<link href="../images/book-logo.png" rel="icon" type="image/png">
+<link href="../images/logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_download.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/portfolio_analysis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">03 相关性分析与投资组合构建</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_download.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/portfolio_analysis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">相关性分析与投资组合构建</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -135,7 +135,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="https://github.com/chaoyian/teamworkquartobook" class="sidebar-logo-link">
+      <img src="../images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">小组报告</a> 
         <div class="sidebar-tools-main">
@@ -173,19 +177,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/data_download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">01 数据下载与预处理</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据下载与预处理</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/beta_estimation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">02 Beta系数估计</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beta系数估计</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../body/portfolio_analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">03 相关性分析与投资组合构建</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">相关性分析与投资组合构建</span></span></a>
   </div>
 </li>
       </ul>
@@ -217,20 +221,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#目的与说明" id="toc-目的与说明" class="nav-link active" data-scroll-target="#目的与说明"><span class="header-section-number">4.1</span> 3.1 目的与说明</a></li>
-  <li><a href="#相关性分析" id="toc-相关性分析" class="nav-link" data-scroll-target="#相关性分析"><span class="header-section-number">4.2</span> 3.3 相关性分析</a></li>
-  <li><a href="#滚动相关系数" id="toc-滚动相关系数" class="nav-link" data-scroll-target="#滚动相关系数"><span class="header-section-number">4.3</span> 3.4 滚动相关系数</a></li>
-  <li><a href="#等权重投资组合分析" id="toc-等权重投资组合分析" class="nav-link" data-scroll-target="#等权重投资组合分析"><span class="header-section-number">4.4</span> 3.5 等权重投资组合分析</a></li>
-  <li><a href="#有效前沿分析" id="toc-有效前沿分析" class="nav-link" data-scroll-target="#有效前沿分析"><span class="header-section-number">4.5</span> 3.6 有效前沿分析</a></li>
+  <li><a href="#目的与说明" id="toc-目的与说明" class="nav-link active" data-scroll-target="#目的与说明"><span class="header-section-number">4.1</span> 目的与说明</a></li>
+  <li><a href="#相关性分析" id="toc-相关性分析" class="nav-link" data-scroll-target="#相关性分析"><span class="header-section-number">4.2</span> 相关性分析</a></li>
+  <li><a href="#滚动相关系数" id="toc-滚动相关系数" class="nav-link" data-scroll-target="#滚动相关系数"><span class="header-section-number">4.3</span> 滚动相关系数</a></li>
+  <li><a href="#等权重投资组合分析" id="toc-等权重投资组合分析" class="nav-link" data-scroll-target="#等权重投资组合分析"><span class="header-section-number">4.4</span> 等权重投资组合分析</a></li>
+  <li><a href="#有效前沿分析" id="toc-有效前沿分析" class="nav-link" data-scroll-target="#有效前沿分析"><span class="header-section-number">4.5</span> 有效前沿分析</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_download.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/portfolio_analysis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">03 相关性分析与投资组合构建</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/data_download.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/portfolio_analysis.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">相关性分析与投资组合构建</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">03 相关性分析与投资组合构建</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">相关性分析与投资组合构建</span></h1>
 </div>
 
 
@@ -248,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="目的与说明" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="目的与说明"><span class="header-section-number">4.1</span> 3.1 目的与说明</h2>
+<h2 data-number="4.1" class="anchored" data-anchor-id="目的与说明"><span class="header-section-number">4.1</span> 目的与说明</h2>
 <p>本notebook完成以下任务：</p>
 <ol type="1">
 <li><strong>相关性分析</strong>：
@@ -329,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>结果解读</strong>: 本代码加载清洗后的收益率数据和全样本Beta估计结果。数据时间范围2019-01-03至2026-03-25，共1739个观测值。</p>
 </section>
 <section id="相关性分析" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="相关性分析"><span class="header-section-number">4.2</span> 3.3 相关性分析</h2>
+<h2 data-number="4.2" class="anchored" data-anchor-id="相关性分析"><span class="header-section-number">4.2</span> 相关性分析</h2>
 <div id="cell-6" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算相关系数矩阵</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>stock_returns <span class="op">=</span> returns[stock_names]</span>
@@ -409,7 +413,7 @@ SINOPEC  0.4697  0.1518  0.1455  0.1695   1.0000</code></pre>
 <p><strong>结果解读</strong>: 本代码保存相关系数矩阵至CSV文件，用于后续分析和报告。</p>
 </section>
 <section id="滚动相关系数" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="滚动相关系数"><span class="header-section-number">4.3</span> 3.4 滚动相关系数</h2>
+<h2 data-number="4.3" class="anchored" data-anchor-id="滚动相关系数"><span class="header-section-number">4.3</span> 滚动相关系数</h2>
 <div id="cell-13" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.dates <span class="im">as</span> mdates</span>
@@ -539,7 +543,7 @@ YU-SI  0.2143  0.1910 -0.2411  0.7233</code></pre>
 <p><strong>结果解读</strong>: 本代码保存滚动相关系数数据至CSV文件。60日滚动窗口生成的相关系数时序，可用于分析股票对相关性的动态演变规律。</p>
 </section>
 <section id="等权重投资组合分析" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="等权重投资组合分析"><span class="header-section-number">4.4</span> 3.5 等权重投资组合分析</h2>
+<h2 data-number="4.4" class="anchored" data-anchor-id="等权重投资组合分析"><span class="header-section-number">4.4</span> 等权重投资组合分析</h2>
 <div id="cell-20" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 构造等权重投资组合</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>n_stocks <span class="op">=</span> <span class="bu">len</span>(stock_names)</span>
@@ -833,7 +837,7 @@ R²:     0.6318</code></pre>
 <p><strong>结果解读</strong>: 本代码保存组合绩效数据和净值数据。这些数据支持后续的业绩归因分析和风险管理评估。</p>
 </section>
 <section id="有效前沿分析" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="有效前沿分析"><span class="header-section-number">4.5</span> 3.6 有效前沿分析</h2>
+<h2 data-number="4.5" class="anchored" data-anchor-id="有效前沿分析"><span class="header-section-number">4.5</span> 有效前沿分析</h2>
 <div id="cell-33" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 有效前沿分析</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
@@ -1351,7 +1355,7 @@ SINOPEC  0.0061  0.0046  0.0075  0.0053   0.0159</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/lianxhcn\.github\.io\/quarto_book\/");
+        var filterRegex = new RegExp("https:\/\/github\.com\/chaoyian\/teamworkquartobook");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1685,8 +1689,8 @@ SINOPEC  0.0061  0.0046  0.0075  0.0053   0.0159</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../body/beta_estimation.html" class="pagination-link" aria-label="02 Beta系数估计">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">02 Beta系数估计</span></span>
+      <a href="../body/beta_estimation.html" class="pagination-link" aria-label="Beta系数估计">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Beta系数估计</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

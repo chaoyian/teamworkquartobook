@@ -3,3 +3,5 @@ title: "Home"
 报告人: "赵颐安"
 numbered: false
 ---
+
+<img src="images/front.png" width="350"/>
