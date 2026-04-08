@@ -5,7 +5,7 @@ project:
 book:
   title: "小组作业"
   reader-mode: true 
-  author: "赵颐安"
+  author: "G6"
   date: today
   date-format: iso
 #  lang: zh  # 不要设置这个，会导致很多问题
