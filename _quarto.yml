@@ -31,9 +31,14 @@ book:
 
     - part: "**Topic1 作业解释**"
       chapters: 
-        - body/data_download.ipynb
-        - body/beta_estimation.ipynb
-        - body/portfolio_analysis.ipynb
+        - body/01_analysis approach.qmd
+        - body/02_data_description.qmd
+        - body/03_beta_estimation.qmd
+        - body/cruve.ipynb
+        - body/05_conclusions.qmd
+        - body/06_ai_usage.qmd
+        - body/07_thanks.qmd
+
 
     - part: "**附录**"
       chapters: 

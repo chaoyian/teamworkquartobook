@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="赵颐安">
-<meta name="dcterms.date" content="2026-04-08">
 
-<title>小组作业</title>
+<title>6&nbsp; 主要结论 – 小组作业</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -28,25 +26,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./body/01_analysis approach.html" rel="next">
-<link href="./images/logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e5c0da90bde570b7566f6217e7c63da7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-129de04a1840c7037371eca611205fe6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../body/06_ai_usage.html" rel="next">
+<link href="../body/cruve.html" rel="prev">
+<link href="../images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e5c0da90bde570b7566f6217e7c63da7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-129de04a1840c7037371eca611205fe6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -75,8 +74,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -88,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Home</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/01_analysis approach.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/05_conclusions.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">主要结论</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -103,11 +131,11 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="https://github.com/chaoyian/teamworkquartobook" class="sidebar-logo-link">
-      <img src="./images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="../images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">小组报告</a> 
+      <a href="../">小组报告</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/lianxhcn/quarto_book" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -127,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Home</span></span></a>
   </div>
 </li>
@@ -142,43 +170,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/01_analysis approach.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/01_analysis approach.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">分析思路</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/02_data_description.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/02_data_description.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">数据说明</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/03_beta_estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/03_beta_estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Beta系数估计分析</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/cruve.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/cruve.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">投资组合构建与有效前沿曲线</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/05_conclusions.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/05_conclusions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">主要结论</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/06_ai_usage.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/06_ai_usage.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">AI工具使用说明</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/07_thanks.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/07_thanks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">感谢与说明</span></span></a>
   </div>
 </li>
@@ -195,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/蒙特卡洛模拟在高维数据中的困境.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/蒙特卡洛模拟在高维数据中的困境.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">探讨蒙特卡罗模拟在高维数据中的困境</span></span></a>
   </div>
 </li>
@@ -206,34 +234,42 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#beta系数分析结论" id="toc-beta系数分析结论" class="nav-link active" data-scroll-target="#beta系数分析结论"><span class="header-section-number">6.1</span> Beta系数分析结论</a>
+  <ul class="collapse">
+  <li><a href="#系统性风险差异显著" id="toc-系统性风险差异显著" class="nav-link" data-scroll-target="#系统性风险差异显著"><span class="header-section-number">6.1.1</span> 系统性风险差异显著</a></li>
+  <li><a href="#beta呈现显著时变特征" id="toc-beta呈现显著时变特征" class="nav-link" data-scroll-target="#beta呈现显著时变特征"><span class="header-section-number">6.1.2</span> Beta呈现显著时变特征</a></li>
+  <li><a href="#capm模型存在设定偏误" id="toc-capm模型存在设定偏误" class="nav-link" data-scroll-target="#capm模型存在设定偏误"><span class="header-section-number">6.1.3</span> CAPM模型存在设定偏误</a></li>
+  </ul></li>
+  <li><a href="#投资组合分析结论" id="toc-投资组合分析结论" class="nav-link" data-scroll-target="#投资组合分析结论"><span class="header-section-number">6.2</span> 投资组合分析结论</a>
+  <ul class="collapse">
+  <li><a href="#分散化效果显著" id="toc-分散化效果显著" class="nav-link" data-scroll-target="#分散化效果显著"><span class="header-section-number">6.2.1</span> 分散化效果显著</a></li>
+  <li><a href="#组合beta完美可加" id="toc-组合beta完美可加" class="nav-link" data-scroll-target="#组合beta完美可加"><span class="header-section-number">6.2.2</span> 组合Beta完美可加</a></li>
+  <li><a href="#有效前沿启示" id="toc-有效前沿启示" class="nav-link" data-scroll-target="#有效前沿启示"><span class="header-section-number">6.2.3</span> 有效前沿启示</a></li>
+  </ul></li>
+  <li><a href="#投资建议" id="toc-投资建议" class="nav-link" data-scroll-target="#投资建议"><span class="header-section-number">6.3</span> 投资建议</a></li>
+  <li><a href="#研究局限" id="toc-研究局限" class="nav-link" data-scroll-target="#研究局限"><span class="header-section-number">6.4</span> 研究局限</a></li>
+  <li><a href="#未来改进方向" id="toc-未来改进方向" class="nav-link" data-scroll-target="#未来改进方向"><span class="header-section-number">6.5</span> 未来改进方向</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/01_analysis approach.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/05_conclusions.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">主要结论</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">小组作业</h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">主要结论</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>赵颐安 </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">2026-04-08</p>
-    </div>
-  </div>
   
     
   </div>
@@ -243,9 +279,222 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="images/front.png" width="350"></p>
+<section id="beta系数分析结论" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="beta系数分析结论"><span class="header-section-number">6.1</span> Beta系数分析结论</h2>
+<section id="系统性风险差异显著" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="系统性风险差异显著"><span class="header-section-number">6.1.1</span> 系统性风险差异显著</h3>
+<p>5只股票的Beta系数呈现明显的行业分层：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>风险类型</th>
+<th>股票</th>
+<th>Beta范围</th>
+<th>代表行业</th>
+<th>投资特征</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>防御型</td>
+<td>ICBC, SINOPEC</td>
+<td>0.18-0.22</td>
+<td>银行、能源</td>
+<td>低波动、抗跌</td>
+</tr>
+<tr class="even">
+<td>均衡型</td>
+<td>YUNNAN, YILI</td>
+<td>0.71-0.79</td>
+<td>医药、消费</td>
+<td>中等波动</td>
+</tr>
+<tr class="odd">
+<td>进攻型</td>
+<td>ZTE</td>
+<td>1.20</td>
+<td>科技</td>
+<td>高波动、弹性大</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>核心结论</strong>: 行业属性决定了股票的系统性风险水平。传统行业（银行、能源）Beta低，防御性强；科技行业Beta高，进攻性强。</p>
+</div>
+</div>
+</section>
+<section id="beta呈现显著时变特征" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="beta呈现显著时变特征"><span class="header-section-number">6.1.2</span> Beta呈现显著时变特征</h3>
+<p>通过对2019-2025年数据的分析，我们发现：</p>
+<p><strong>2020年（COVID-19疫情）</strong>: - 多数股票Beta下降，市场恐慌导致相关性上升 - 伊利股份Beta反而上升至0.95，必需消费品防御性凸显</p>
+<p><strong>2021年（监管收紧）</strong>: - 互联网科技股ZTE的Beta大幅下降（1.23→0.73） - 医药股YUNNAN的Beta上升至1.10</p>
+<p><strong>2022年（市场调整）</strong>: - ICBC的Beta降至最低0.07 - 银行和能源成为市场调整期的避风港</p>
+<p><strong>2025年（科技分化）</strong>: - ZTE的Beta急剧上升至1.72，需高度关注科技股风险</p>
+</section>
+<section id="capm模型存在设定偏误" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="capm模型存在设定偏误"><span class="header-section-number">6.1.3</span> CAPM模型存在设定偏误</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>检验</th>
+<th>问题股票</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ljung-Box自相关检验</td>
+<td>SINOPEC</td>
+<td>存在显著自相关</td>
+</tr>
+<tr class="even">
+<td>White异方差检验</td>
+<td>ICBC, YILI, SINOPEC</td>
+<td>存在异方差</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>模型局限性</strong>: - CAPM为单因子模型，无法捕捉规模、价值等效应 - 实际应用中可考虑使用GARCH模型捕捉时变波动率 - 或引入Fama-French多因子模型进行改进</p>
+</div>
+</div>
+</section>
+</section>
+<section id="投资组合分析结论" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="投资组合分析结论"><span class="header-section-number">6.2</span> 投资组合分析结论</h2>
+<section id="分散化效果显著" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="分散化效果显著"><span class="header-section-number">6.2.1</span> 分散化效果显著</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指标</th>
+<th>单只股票均值</th>
+<th>等权组合</th>
+<th>改善幅度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>波动率</td>
+<td>22.52%</td>
+<td>14.84%</td>
+<td>↓ 34%</td>
+</tr>
+<tr class="even">
+<td>最大回撤</td>
+<td>-41.72%</td>
+<td>-26.82%</td>
+<td>↓ 36%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结论</strong>: 分散化投资能显著降低组合风险，提高风险调整后收益。</p>
+</section>
+<section id="组合beta完美可加" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="组合beta完美可加"><span class="header-section-number">6.2.2</span> 组合Beta完美可加</h3>
+<ul>
+<li>组合Beta = 各股票Beta均值 = 0.6210</li>
+<li>验证了CAPM理论的核心性质</li>
+<li>为组合风险管理提供理论依据</li>
+</ul>
+</section>
+<section id="有效前沿启示" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="有效前沿启示"><span class="header-section-number">6.2.3</span> 有效前沿启示</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>组合类型</th>
+<th>建议权重</th>
+<th>适用投资者</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>最小方差组合</td>
+<td>ICBC 61%, SINOPEC 28%</td>
+<td>极度保守型</td>
+</tr>
+<tr class="even">
+<td>最大夏普组合</td>
+<td>ICBC 92%, ZTE 8%</td>
+<td>稳健型</td>
+</tr>
+<tr class="odd">
+<td>等权重组合</td>
+<td>各20%</td>
+<td>平衡型</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="投资建议" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="投资建议"><span class="header-section-number">6.3</span> 投资建议</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>稳健型投资者
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>构建以银行股为核心（60%+）的低Beta组合，波动率可控制在10%以内，最大回撤控制在15%以内。</p>
+<section id="平衡型投资者" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="平衡型投资者"><span class="header-section-number">6.3.1</span> 平衡型投资者</h3>
+<p>采用等权重或最小方差组合配置，夏普比率可达0.35以上，在风险和收益间取得平衡。</p>
+</section>
+<section id="进取型投资者" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="进取型投资者"><span class="header-section-number">6.3.2</span> 进取型投资者</h3>
+<p>如果仅持有科技股（ZTE），需承受40%+年化波动和60%+最大回撤，建议控制仓位不超过30%。</p>
+</section>
+</div>
+</div>
+</section>
+<section id="研究局限" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="研究局限"><span class="header-section-number">6.4</span> 研究局限</h2>
+<ol type="1">
+<li><p><strong>样本局限</strong>: 仅选取5只股票，行业覆盖不全面，未能代表整个A股市场</p></li>
+<li><p><strong>模型局限</strong>: CAPM为单因子模型，未考虑Fama-French三因子/五因子模型中的规模和价值因子</p></li>
+<li><p><strong>数据局限</strong>: 2019年以来的数据仅约7年，可能不经历完整牛熊周期</p></li>
+<li><p><strong>交易成本</strong>: 未考虑实际交易中的佣金、滑点、印花税等成本</p></li>
+<li><p><strong>流动性</strong>: 未考虑股票的流动性风险</p></li>
+</ol>
+</section>
+<section id="未来改进方向" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="未来改进方向"><span class="header-section-number">6.5</span> 未来改进方向</h2>
+<ol type="1">
+<li><p><strong>扩充样本</strong>: 扩展至沪深300成分股，覆盖更多行业</p></li>
+<li><p><strong>多因子模型</strong>: 引入Fama-French三因子/五因子模型</p></li>
+</ol>
+<p><span class="math display">\[R_{i,t} - R_{f,t} = \alpha_i + \beta_{i,MKT}MKT_t + \beta_{i,SMB}SMB_t + \beta_{i,HML}HML_t + \varepsilon_{i,t}\]</span></p>
+<ol start="3" type="1">
+<li><p><strong>高频数据</strong>: 使用5分钟或日频数据估计Beta，比较差异</p></li>
+<li><p><strong>条件CAPM</strong>: 研究时变条件CAPM，考虑条件异方差</p></li>
+<li><p><strong>机器学习</strong>: 使用LSTM等深度学习模型预测Beta</p></li>
+</ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -655,10 +904,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../body/cruve.html" class="pagination-link" aria-label="投资组合构建与有效前沿曲线">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">投资组合构建与有效前沿曲线</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./body/01_analysis approach.html" class="pagination-link" aria-label="分析思路">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">分析思路</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../body/06_ai_usage.html" class="pagination-link" aria-label="AI工具使用说明">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">AI工具使用说明</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

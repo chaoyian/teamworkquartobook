@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="赵颐安">
-<meta name="dcterms.date" content="2026-04-08">
 
-<title>小组作业</title>
+<title>3&nbsp; 数据说明 – 小组作业</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,28 +23,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./body/01_analysis approach.html" rel="next">
-<link href="./images/logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e5c0da90bde570b7566f6217e7c63da7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-129de04a1840c7037371eca611205fe6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../body/03_beta_estimation.html" rel="next">
+<link href="../body/01_analysis approach.html" rel="prev">
+<link href="../images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e5c0da90bde570b7566f6217e7c63da7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-129de04a1840c7037371eca611205fe6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -75,8 +109,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -88,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Home</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/01_analysis approach.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/02_data_description.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">数据说明</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -103,11 +166,11 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="https://github.com/chaoyian/teamworkquartobook" class="sidebar-logo-link">
-      <img src="./images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="../images/logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../images/logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">小组报告</a> 
+      <a href="../">小组报告</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/lianxhcn/quarto_book" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -127,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Home</span></span></a>
   </div>
 </li>
@@ -142,43 +205,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/01_analysis approach.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/01_analysis approach.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">分析思路</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/02_data_description.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/02_data_description.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">数据说明</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/03_beta_estimation.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/03_beta_estimation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Beta系数估计分析</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/cruve.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/cruve.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">投资组合构建与有效前沿曲线</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/05_conclusions.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/05_conclusions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">主要结论</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/06_ai_usage.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/06_ai_usage.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">AI工具使用说明</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/07_thanks.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/07_thanks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">感谢与说明</span></span></a>
   </div>
 </li>
@@ -195,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./body/蒙特卡洛模拟在高维数据中的困境.html" class="sidebar-item-text sidebar-link">
+  <a href="../body/蒙特卡洛模拟在高维数据中的困境.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">探讨蒙特卡罗模拟在高维数据中的困境</span></span></a>
   </div>
 </li>
@@ -206,34 +269,45 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#股票选取" id="toc-股票选取" class="nav-link active" data-scroll-target="#股票选取"><span class="header-section-number">3.1</span> 股票选取</a>
+  <ul class="collapse">
+  <li><a href="#选取原则" id="toc-选取原则" class="nav-link" data-scroll-target="#选取原则"><span class="header-section-number">3.1.1</span> 选取原则</a></li>
+  <li><a href="#行业特征简析" id="toc-行业特征简析" class="nav-link" data-scroll-target="#行业特征简析"><span class="header-section-number">3.1.2</span> 行业特征简析</a></li>
+  </ul></li>
+  <li><a href="#数据信息" id="toc-数据信息" class="nav-link" data-scroll-target="#数据信息"><span class="header-section-number">3.2</span> 数据信息</a>
+  <ul class="collapse">
+  <li><a href="#基本信息" id="toc-基本信息" class="nav-link" data-scroll-target="#基本信息"><span class="header-section-number">3.2.1</span> 基本信息</a></li>
+  <li><a href="#对数收益率计算" id="toc-对数收益率计算" class="nav-link" data-scroll-target="#对数收益率计算"><span class="header-section-number">3.2.2</span> 对数收益率计算</a></li>
+  <li><a href="#无风险利率设定" id="toc-无风险利率设定" class="nav-link" data-scroll-target="#无风险利率设定"><span class="header-section-number">3.2.3</span> 无风险利率设定</a></li>
+  </ul></li>
+  <li><a href="#描述性统计" id="toc-描述性统计" class="nav-link" data-scroll-target="#描述性统计"><span class="header-section-number">3.3</span> 描述性统计</a>
+  <ul class="collapse">
+  <li><a href="#日收益率基本统计" id="toc-日收益率基本统计" class="nav-link" data-scroll-target="#日收益率基本统计"><span class="header-section-number">3.3.1</span> 日收益率基本统计</a></li>
+  <li><a href="#分布特征分析" id="toc-分布特征分析" class="nav-link" data-scroll-target="#分布特征分析"><span class="header-section-number">3.3.2</span> 分布特征分析</a></li>
+  <li><a href="#波动率特征解读" id="toc-波动率特征解读" class="nav-link" data-scroll-target="#波动率特征解读"><span class="header-section-number">3.3.3</span> 波动率特征解读</a></li>
+  </ul></li>
+  <li><a href="#数据获取代码示例" id="toc-数据获取代码示例" class="nav-link" data-scroll-target="#数据获取代码示例"><span class="header-section-number">3.4</span> 数据获取代码示例</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../body/01_analysis approach.html"><strong>Topic1 作业解释</strong></a></li><li class="breadcrumb-item"><a href="../body/02_data_description.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">数据说明</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">小组作业</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">数据说明</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>赵颐安 </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">2026-04-08</p>
-    </div>
-  </div>
   
     
   </div>
@@ -243,9 +317,323 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="images/front.png" width="350"></p>
+<section id="股票选取" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="股票选取"><span class="header-section-number">3.1</span> 股票选取</h2>
+<section id="选取原则" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="选取原则"><span class="header-section-number">3.1.1</span> 选取原则</h3>
+<p>本研究选取5只A股代表性股票，覆盖银行、消费、科技、医药、能源五大行业，力求体现A股市场的行业多样性：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 15%">
+<col style="width: 14%">
+<col style="width: 15%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>序号</th>
+<th>股票代码</th>
+<th>股票名称</th>
+<th>所属行业</th>
+<th>选取理由</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>601398.SH</td>
+<td>工商银行</td>
+<td>银行</td>
+<td>中国最大商业银行，国有银行代表</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>600887.SH</td>
+<td>伊利股份</td>
+<td>食品饮料</td>
+<td>消费龙头，白马股代表</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>000063.SZ</td>
+<td>中兴通讯</td>
+<td>通信/科技</td>
+<td>科技成长股，5G龙头</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>000538.SZ</td>
+<td>云南白药</td>
+<td>医药生物</td>
+<td>医药防御型，品牌中药代表</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>600028.SH</td>
+<td>中国石化</td>
+<td>石油化工</td>
+<td>能源周期型，央企代表</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="行业特征简析" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="行业特征简析"><span class="header-section-number">3.1.2</span> 行业特征简析</h3>
+<ul>
+<li><strong>银行业（ICBC）</strong>: 受到央行货币政策和监管政策的强烈影响，利率是其核心驱动因素</li>
+<li><strong>食品饮料（伊利）</strong>: 受到消费升级和原材料价格影响，具有防御性特征</li>
+<li><strong>科技通信（中兴）</strong>: 受到技术迭代和政策影响，波动性较高</li>
+<li><strong>医药生物（云南白药）</strong>: 人口老龄化和医疗改革推动，需求稳定</li>
+<li><strong>石油化工（中石化）</strong>: 受国际油价和宏观经济周期影响</li>
+</ul>
+<p><strong>市场基准</strong>: 沪深300指数 (000300.SH) — 反映A股市场整体表现</p>
+</section>
+</section>
+<section id="数据信息" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="数据信息"><span class="header-section-number">3.2</span> 数据信息</h2>
+<section id="基本信息" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="基本信息"><span class="header-section-number">3.2.1</span> 基本信息</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>起始日期</td>
+<td>2019-01-01</td>
+</tr>
+<tr class="even">
+<td>截止日期</td>
+<td>2026-03-25</td>
+</tr>
+<tr class="odd">
+<td>有效交易日</td>
+<td>1739天</td>
+</tr>
+<tr class="even">
+<td>数据频率</td>
+<td>日度数据</td>
+</tr>
+<tr class="odd">
+<td>数据来源</td>
+<td>akshare金融数据库</td>
+</tr>
+<tr class="even">
+<td>收益率类型</td>
+<td>对数收益率</td>
+</tr>
+<tr class="odd">
+<td>复权方式</td>
+<td>后复权（hfq）</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="对数收益率计算" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="对数收益率计算"><span class="header-section-number">3.2.2</span> 对数收益率计算</h3>
+<p>本研究采用对数收益率计算股票收益：</p>
+<p><span class="math display">\[r_t = \ln\left(\frac{P_t}{P_{t-1}}\right)\]</span></p>
+<p>对数收益率的优点： - 时间可加性：多期收益率为各期收益率之和 - 正态分布近似：相比简单收益率更接近正态分布 - 数学性质优良：便于统计建模</p>
+</section>
+<section id="无风险利率设定" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="无风险利率设定"><span class="header-section-number">3.2.3</span> 无风险利率设定</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>参数</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>年化无风险利率</td>
+<td>2.5%</td>
+<td>参考国债收益率</td>
+</tr>
+<tr class="even">
+<td>日频无风险利率</td>
+<td>0.025/252 ≈ 0.000099</td>
+<td>用于计算日超额收益</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="描述性统计" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="描述性统计"><span class="header-section-number">3.3</span> 描述性统计</h2>
+<section id="日收益率基本统计" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="日收益率基本统计"><span class="header-section-number">3.3.1</span> 日收益率基本统计</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>指标</th>
+<th>ICBC</th>
+<th>YILI</th>
+<th>ZTE</th>
+<th>YUNNAN</th>
+<th>SINOPEC</th>
+<th>CSI300</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>日均收益率</td>
+<td>0.0003</td>
+<td>0.0002</td>
+<td>0.0003</td>
+<td>0.0002</td>
+<td>0.0002</td>
+<td>0.0002</td>
+</tr>
+<tr class="even">
+<td>日波动率</td>
+<td>0.0065</td>
+<td>0.0151</td>
+<td>0.0258</td>
+<td>0.0156</td>
+<td>0.0079</td>
+<td>0.0120</td>
+</tr>
+<tr class="odd">
+<td>年化收益率</td>
+<td>6.57%</td>
+<td>5.10%</td>
+<td>8.41%</td>
+<td>4.22%</td>
+<td>4.88%</td>
+<td>6.11%</td>
+</tr>
+<tr class="even">
+<td>年化波动率</td>
+<td>10.34%</td>
+<td>23.95%</td>
+<td>40.96%</td>
+<td>24.74%</td>
+<td>12.58%</td>
+<td>19.00%</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="分布特征分析" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="分布特征分析"><span class="header-section-number">3.3.2</span> 分布特征分析</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>股票</th>
+<th>偏度</th>
+<th>峰度</th>
+<th>JB统计量</th>
+<th>正态性</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ICBC</td>
+<td>0.5868</td>
+<td>6.6736</td>
+<td>3325.95</td>
+<td>拒绝</td>
+</tr>
+<tr class="even">
+<td>YILI</td>
+<td>0.1345</td>
+<td>5.4228</td>
+<td>2134.60</td>
+<td>拒绝</td>
+</tr>
+<tr class="odd">
+<td>ZTE</td>
+<td>0.3452</td>
+<td>2.5299</td>
+<td>497.17</td>
+<td>拒绝</td>
+</tr>
+<tr class="even">
+<td>YUNNAN</td>
+<td>0.5535</td>
+<td>6.2418</td>
+<td>2894.00</td>
+<td>拒绝</td>
+</tr>
+<tr class="odd">
+<td>SINOPEC</td>
+<td>0.3188</td>
+<td>5.8051</td>
+<td>2469.89</td>
+<td>拒绝</td>
+</tr>
+<tr class="even">
+<td>CSI300</td>
+<td>-0.2212</td>
+<td>5.8807</td>
+<td>2518.56</td>
+<td>拒绝</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>重要发现</strong>: 所有资产收益率均显著偏离正态分布！</p>
+<ul>
+<li>所有资产的<strong>偏度均大于0</strong>，呈右偏（正偏）分布</li>
+<li>所有资产的<strong>峰度均大于3</strong>（正态分布峰度为3），存在显著的”尖峰厚尾”特征</li>
+<li>Jarque-Bera检验的p值均为0，强烈拒绝正态性假设</li>
+</ul>
+<p><strong>投资启示</strong>: 正态分布假设下的VaR等风险指标可能低估实际风险！</p>
+</div>
+</div>
+</section>
+<section id="波动率特征解读" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="波动率特征解读"><span class="header-section-number">3.3.3</span> 波动率特征解读</h3>
+<ul>
+<li><strong>科技股（ZTE）</strong>: 年化波动率高达40.96%，风险最高</li>
+<li><strong>银行股（ICBC）</strong>: 年化波动率仅10.34%，风险最低</li>
+<li><strong>沪深300指数</strong>: 年化波动率19.00%，介于两者之间</li>
+</ul>
+</section>
+</section>
+<section id="数据获取代码示例" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="数据获取代码示例"><span class="header-section-number">3.4</span> 数据获取代码示例</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> akshare <span class="im">as</span> ak</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 下载个股日度行情</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> ak.stock_zh_a_hist(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    symbol<span class="op">=</span><span class="st">'601398'</span>,      <span class="co"># 工商银行</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    period<span class="op">=</span><span class="st">'daily'</span>,      <span class="co"># 日频</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    start_date<span class="op">=</span><span class="st">'20190101'</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    end_date<span class="op">=</span><span class="st">'20260325'</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    adjust<span class="op">=</span><span class="st">'hfq'</span>         <span class="co"># 后复权</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 下载沪深300指数</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>index_data <span class="op">=</span> ak.index_zh_a_hist(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    symbol<span class="op">=</span><span class="st">'000300'</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    period<span class="op">=</span><span class="st">'daily'</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    start_date<span class="op">=</span><span class="st">'20190101'</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    end_date<span class="op">=</span><span class="st">'20260325'</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算对数收益率</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'return'</span>] <span class="op">=</span> np.log(df[<span class="st">'收盘'</span>] <span class="op">/</span> df[<span class="st">'收盘'</span>].shift(<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -655,10 +1043,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../body/01_analysis approach.html" class="pagination-link" aria-label="分析思路">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">分析思路</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./body/01_analysis approach.html" class="pagination-link" aria-label="分析思路">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">分析思路</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../body/03_beta_estimation.html" class="pagination-link" aria-label="Beta系数估计分析">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Beta系数估计分析</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
